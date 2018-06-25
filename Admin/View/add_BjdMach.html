@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<!--vatUploader图片/文本文件上传插件-->
+		<script src="../../Plugin/upload/plupload.full.min.js"></script>
+		<script src="../../Library/js/vatUploader.js"></script>
+		<!--/vatUploader图片/文本文件上传插件-->
+		
+		<!--百度编辑器配置文件-->
+		<script src="../../Plugin/ueditor/ueditor.config.js"></script>
+		<script src="../../Plugin/ueditor/ueditor.all.js"></script>
+		<!--/百度编辑器配置文件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="add_BjdMach.html"><i class="fa fa-home"></i> 添加/修改娃娃机</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<form class="T_formIbox">
+							<div class="T_rows">
+								<hgroup class="T_select">
+									<label>娃娃机分类：</label>
+									<div class="select-control" datatype="Select" errorMsg="娃娃分类不能为空！">
+										<cite data-value="0" id="subjectCategoryId" data-value="">请选择</cite>
+										<i class="selectDown"></i>
+										<ul class="columnTypeList">
+
+										</ul>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>消耗金币/次：</label>
+									<input type="text" placeholder="消耗金币/1次" id="consumption" class="onlyInteger"  datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>娃娃机名称：</label>
+									<input type="text" placeholder="娃娃机名称" id="machineName" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>视频地址：</label>
+									<input type="text" placeholder="视频地址; 多个视频地址用‘,’分隔" id="txVideoUrl" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>娃娃机编码：</label>
+									<input type="text" placeholder="娃娃机编码" class="onlyNumberText" id="machineNumber" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>机器ip：</label>
+									<input type="text" placeholder="机器ip" id="ip"  datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+
+							<hgroup class="T_radio">
+								<label>机器状态：</label>
+								<div class="radio-control" datatype="Radio" errorMsg="不能为空！">
+									<label class="curActive" data-value="1">正常</label>
+									<label data-value="0">未启用</label>
+								</div>
+							</hgroup>
+
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>端口：</label>
+									<input type="text" placeholder="端口" id="port" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows T_floatN">
+								<hgroup class="T_uploadGroup">
+									<label>娃娃音乐：</label>
+									<em class="T_uploadFileBtn">
+										<a class="T_btn T_btnI"><i class="fa fa-music"></i> 上传音乐</a>
+									</em>
+									<div class="uploadFile_singlecontrol">
+		                            	<span>
+		                            		<i class="fa fa-times-circle text-danger"></i>
+		                            		<cite data-value="1">娃娃音乐</cite>
+		                            	</span>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_uploadGroup">
+									<label>娃娃机LOGO：</label>
+									<div class="uploadPic_singlecontrol" id="uploadImageOne" datatype="OneUploadPic" errorMsg="图片不能为空！">
+										<span>
+											<!--<figure>
+												<img src="../Library/images/header-profile-skin-1.png"/>
+												<div><i></i></div>
+											</figure>-->
+										</span>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="clearfix"></div>
+							<div class="T_rows T_floatN">
+								<hgroup class="T_editor">
+									<label>内容：</label>
+									<div class="editor-control" datatype="UeditorCont" errorMsg="内容不能为空！">
+										<!--加载百度编辑器的容器 -->
+										<script id="container" class="editor_body" name="content" type="text/plain"></script>
+										<!--/加载百度编辑器的容器 -->
+									</div>
+								</hgroup>
+							</div>
+
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_BtnGroup T_submitBtn">
+									<a class="T_btn T_btnI" id="submitSave">保存</a>
+								</hgroup>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+
+            //实例化编辑器
+            var ue = UE.getEditor('container', {})
+
+
+			$(document).ready(function() {
+                var ids = sessionStorage.getItem('ids');
+                if(ids == 'undefined'){
+                    ids = '';
+                }
+                var url = "http://120.77.83.200:8088/back/machine/insertMachineInfo";
+                if(ids != ''){
+                    url ="http://120.77.83.200:8088/back/machine/updateMachineInfo"
+                    getSingleData(ids);
+                }
+
+
+                /**
+                 * 渲染分类列表
+                 **/
+                getColumnTypeList()
+                function getColumnTypeList() {
+                    var data = {
+                        num: 0,
+                        size: '10',
+                        columnType:'2'
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/home/subjectCategoryList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                // <li data-value="1">布娃娃</li>
+                                // <li data-value="2">毛线娃娃</li>
+                                var html = '';
+                                var data = rs.result.list;
+                                for(var i = 0; i< data.length; i++){
+                                    html += '<li data-value="'+ data[i].id + '">'+data[i].columnName+'</li>';
+                                }
+                                $('.columnTypeList').html(html);
+                                $('.select-control').vatSelect();
+
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+			    
+				$('#submitSave').on('click', function(e){
+				    e.preventDefault();
+
+                    console.log(url);
+                    // 表单验证数组
+                    var ValidateArray = [
+                        $('#consumption'),
+                        $('#remark'),
+                        $('#machineName'),
+                        $('#port'),
+                        $('#ip'),
+						$('#txVideoUrls')
+                    ]
+
+                    //判断表单控件是否通过验证
+                    if(!$(ValidateArray).IsValidateAll({bScroll: false})){
+                        return;
+                    }else{
+                        var data = {
+                            id: ids,
+                            machineName:$('#machineName').val(),
+                            machineNumber:$('#machineNumber').val(),
+                            ip:$('#ip').val(),
+                            port:$('#port').val(),
+                            consumption:$('#consumption').val(),
+                            txVideoUrls:$('#txVideoUrl').val(),
+                            machineStatus:$('.curActive').attr('data-value'),
+                            subjectCategoryId:$('#subjectCategoryId').attr('data-value'),
+                            musicFileUpload:$('#uploadImageOne').find('img').data('value'),
+                            fileUpload:$('#uploadImageOne').find('img').data('value'),
+                            machineDesc: ue.getContent()
+                        }
+                        addBjdGoods(data,url);
+                    }
+
+				});
+
+                // 渲染单个详情
+
+                function getSingleData(id) {
+					console.log(id)
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/machine/MachineInfo",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {id:id},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs);
+                                $('#machineName').val(rs.result.machineName);
+                                $('#ip').val(rs.result.ip);
+                                $('#port').val(rs.result.port);
+                                $('#consumption').val(rs.result.consumption);
+                                $('#remark').val(rs.result.consumption);
+                                $('#txVideoUrl').val(rs.result.txVideoUrls);
+                                $('#machineNumber').val(rs.result.machineNumber);
+
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+			    
+			    function addBjdGoods(data,url) {
+				    console.log(data);
+
+                    $.ajax({
+                        type: "post",
+                        url:url ,
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                                parent.closeIframeTabs('View/bjd-mach-Mange.html')
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+				
+			})
+		</script>
+		
+	</body>
+</html>

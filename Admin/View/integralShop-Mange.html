@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="bjd-Mange.html"><i class="fa fa-home"></i> 娃娃管理</a>
+					</li>
+				</ul>
+				
+				<hgroup class="T_toolBtnGroup">
+					<a class="T_btn T_btnI T_menuItem" data-href="View/add_integralGoods.html" data-title="添加积分商品"><i class="fa fa-plus"></i> 添加积分商品</a>
+				</hgroup>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool">
+							<div class="T_rows">
+								
+								<hgroup class="T_select">
+									<label>积分商品类型：</label>
+									<div class="select-control">
+										<cite class="select-type" data-value="">所有</cite>
+										<i class="selectDown"></i>
+										<ul class="columnTypeList">
+											<li data-value="">所有</li>
+											<li data-value="1">娃娃部落</li>
+											<li data-value="2">小仙女必备</li>
+											<li data-value="3">实用品</li>
+										</ul>
+									</div>
+								</hgroup>
+								
+								<hgroup class="T_BtnGroup" id="search">
+									<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+								</hgroup>
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">序号</th>
+										<th class="col-md-1">商品图片</th>
+										<th class="col-md-1">商品名称</th>
+										<th class="col-md-1">商品类型</th>
+										<th class="col-md-1">原价</th>
+										<th class="col-md-1">实际价格</th>
+										<th class="col-md-2">操作</th>
+									</tr>
+								</thead>
+								<tbody id="evaluation">
+
+
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+									{{ for(var i in it.list) { }}
+									<tr>
+										<td>{{= i }}  </td>
+										<td><img style="width: 40px; height: 40px;" src="http://{{= it.list[i].realFilePath}}"/></td>
+										<td>{{= it.list[i].commodityName || ''}}</td>
+										{{? it.list[i].integralCommodityType == 1 }}
+											<td>娃娃部落</td>
+										{{?? it.list[i].integralCommodityType == 2}}
+											<td>小仙女必备</td>
+										{{??}}
+											<td>实用品</td>
+										{{?}}
+										<td>{{= it.list[i].originalPrice || ''}}</td>
+										<td>{{= it.list[i].realPrice || ''}}</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP T_menuItem" data-href="View/add_integralGoods.html" data-title="修改积分商品" data-id="{{= it.list[i].id}}"><i class="fa fa-edit"></i> 修改</a>
+											<a class="T_btn T_btnSm T_btnD del_Btn" data-id="{{= it.list[i].id}}"><i class="fa fa-trash-o"></i> 删除</a>
+										</td>
+									</tr>
+									{{ } }}
+
+								</script>
+							</table>
+						</div>
+						<!--T_pageToolbar-->
+						<div id="pagination3" class="page fl"></div>
+						<!--/T_pageToolbar-->
+						<!--/T_tableResponsive-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+			
+
+			$(document).ready(function() {
+
+                var _num = 0,integralCommodityType;
+
+                getBjdList(_num);
+                //  获取 娃娃数据列表
+
+
+                $('#search').click(function () {
+                    integralCommodityType = $('.select-type').attr('data-value');
+                    getBjdList(_num,integralCommodityType);
+                });
+				
+				function getBjdList(_num) {
+
+				    var data ={
+						    integralCommodityType:integralCommodityType ||'',
+							num :_num,
+                            size :'5'
+					};
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/integral/integralCommodityList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text());
+                                $('#evaluation').html(arrText(rs.result));
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+                            _num = current;
+                            getBjdList(current,integralCommodityType);
+                        }
+                    });
+                }
+
+                // 删除
+                $('body').on('click', '.del_Btn', function () {
+                    var ids = $(this).data('id');
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/integral/deleteIntegralCommodity",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {ids: ids},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'})
+                                getBjdList(_num);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                        }
+                    });
+
+                });
+
+
+				/**
+				 * iframe子页面跳转-事件
+				 */
+				$('body').on('click','.T_menuItem',function() {
+					//在iframe中调用父页面的子页面跳转-函数
+                    sessionStorage.setItem('ids',$(this).attr('data-id'));
+					parent.subPageMenuHref($(this));
+				})
+				
+			})
+		</script>
+		
+	</body>
+</html>

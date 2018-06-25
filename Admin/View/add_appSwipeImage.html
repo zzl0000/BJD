@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+		
+		<!--vatUploader图片/文本文件上传插件-->
+		<script src="../../Plugin/upload/plupload.full.min.js"></script>
+		<script src="../../Library/js/vatUploader.js"></script>
+		<!--/vatUploader图片/文本文件上传插件-->
+		
+		<!--百度编辑器配置文件-->
+		<script src="../../Plugin/ueditor/ueditor.config.js"></script>
+		<script src="../../Plugin/ueditor/ueditor.all.js"></script>
+		<!--/百度编辑器配置文件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="add_BjdGoods.html"><i class="fa fa-home"></i> 添加/修改轮播图</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<form class="T_formIbox">
+							<div class="T_rows">
+								<hgroup class="T_select">
+									<label>分类：</label>
+									<div class="select-control" datatype="Select" errorMsg="娃娃分类不能为空！">
+										<cite class="select-type" data-value="1">首页轮播</cite>
+										<i class="selectDown"></i>
+										<ul>
+											<li data-value="1">首页轮播</li>
+											<li data-value="2">积分商城轮播</li>
+											<li data-value="3">影院轮播</li>
+										</ul>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>图片名称：</label>
+									<input type="text" id="banner_title" placeholder="输入名称" datatype="IsNull" errorMsg="名称不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>图片链接：</label>
+									<input type="text" id="url" placeholder="输入图片链接" datatype="IsNull" errorMsg="图片链接不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_uploadGroup">
+									<label>轮播图片：</label>
+									<div class="uploadPic_control" id="uploadImageCheck" datatype="UploadPic" dataToggle="span.certi" errorMsg="轮播图片不能为空！">
+										<!--<figure>
+											<img src="../Library/images/header-profile-skin-1.png"/>
+											<div><i></i></div>
+										</figure>-->
+										<span class="certi"><em></em></span>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_textareaText">
+									<label>备注：</label>
+									<div>
+										<textarea id="remark" rows="5" placeholder="输入备注" datatype="IsNull" dataCount="20" errorMsg="备注不能为空！"></textarea>
+										<em class="T_textCount"><b>0</b>/20个字符</em>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows T_floatN">
+								<hgroup class="T_editor">
+									<label>内容：</label>
+									<div class="editor-control" datatype="UeditorCont" errorMsg="内容不能为空！">
+										<!--加载百度编辑器的容器 -->
+										<script id="container" class="editor_body" name="content" type="text/plain"></script>
+										<!--/加载百度编辑器的容器 -->
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_BtnGroup T_submitBtn">
+									<a class="T_btn T_btnI" id="submitSave">保存</a>
+								</hgroup>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+			$(document).ready(function() {
+                var ids = sessionStorage.getItem('ids');
+                if(ids == 'undefined'){
+                    ids = '';
+                }
+				if(ids != ''){
+                    getSingleData(ids);
+				}
+
+
+                // 渲染单个详情
+
+                function getSingleData(id) {
+                   // console.log(id)
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/banner/selectBannerById",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {id:id},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs);
+                                $('#banner_title').val(rs.result.bannerTitle);
+                                $('#url').val(rs.result.url);
+                                $('#remark').val(rs.result.remark);
+
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                $('#submitSave').on('click', function(e){
+                    e.preventDefault();
+
+                    var data = {
+                        id: ids,
+                        bannerType:$('.select-type').attr('data-value'),
+                        bannerTitle:$('#banner_title').val(),
+                        url:$('#url').val(),
+                        remark:$('#remark').val(),
+                        fileUpload:$('#uploadImageCheck').find('img').data('value'),
+                        commodityDetails: ue.getContent()
+                    }
+                    addBjdGoods(data);
+
+                });
+
+
+                function addBjdGoods(data) {
+                    console.log(data);
+
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/banner/insertOrUpdateBanner",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text: '成功', icon: 'sIcon'});
+                                parent.closeIframeTabs('View/appSwipeImage-Mange.html')
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                        }
+                    });
+                }
+
+				
+				//实例化编辑器
+				var ue = UE.getEditor('container', {})
+				
+			})
+		</script>
+		
+	</body>
+</html>

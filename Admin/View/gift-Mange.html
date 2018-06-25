@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="edge"/>
+    <meta name="viewport"
+          content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>爱尚抓娃娃后台管理系统</title>
+    <link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+    <!--重置样式表-->
+    <link rel="stylesheet" href="../../Library/css/Reset-style.css"/>
+    <!--/重置样式表-->
+
+    <link rel="stylesheet" href="../Library/css/Tui-Common.css"/>
+
+    <!--宽度大于1024px的时候加载PC端样式表-->
+    <link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)"/>
+    <!--/宽度大于1024px的时候加载PC端样式表-->
+
+    <!--宽度小于1024px的时候加载移动端样式表-->
+    <link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)"/>
+    <!--/宽度小于1024px的时候加载移动端样式表-->
+
+    <!--Font Awesome图标字体库(font-awesome.css)-->
+    <link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+    <!--/Font Awesome图标字体库(font-awesome.css)-->
+
+    <!--Jquery前端开发框架,JS库-->
+    <script src="../../Library/js/jquery-1.8.3.min.js"></script>
+    <!--/Jquery前端开发框架,JS库-->
+
+    <!--前端开发(doT.js)模板引擎-->
+    <script src="../../Library/js/doT.js"></script>
+    <!--/前端开发(doT.js)模板引擎-->
+
+    <!--自定义TuiComponent组件,插件-->
+    <script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+    <!--/自定义TuiComponent组件,插件-->
+
+    <!--vatUploader图片/文本文件上传插件-->
+    <script src="../../Plugin/upload/plupload.full.min.js"></script>
+    <script src="../../Library/js/vatUploader.js"></script>
+    <!--/vatUploader图片/文本文件上传插件-->
+
+    <link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+    <script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+    <script src="../../Library/js/vatCore.js"></script>
+
+    <!--表单验证插件,JS-->
+    <script src="../../Library/js/ValidateForm.js"></script>
+    <!--/表单验证插件,JS-->
+
+    <!--HTML5标签兼容JS-->
+
+    <!--[if lt IE 9]>
+    <script src="../../Library/js/html5shiv.js"></script>
+    <script src="../../Library/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!--主体内容-模块-->
+<div class="wrapper">
+    <!--T_crumbsNav-->
+    <nav class="T_crumbsNav">
+        <ul>
+            <li>
+                <a href="gift-Mange.html"><i class="fa fa-home"></i> 礼包管理</a>
+            </li>
+        </ul>
+
+        <hgroup class="T_toolBtnGroup">
+            <a class="T_btn T_btnI add_GifTypeBtn"><i class="fa fa-plus"></i> 添加礼物</a>
+        </hgroup>
+    </nav>
+    <!--/T_crumbsNav-->
+
+    <!--T_layout-->
+    <section class="T_layout">
+        <div class="T_ibox">
+            <div class="T_iboxContent">
+                <!--T_formSearchTool-->
+                <form class="T_formSearchTool">
+                    <div class="T_rows">
+                        <hgroup class="T_inputSearch">
+                            <label>礼物名称：</label>
+                            <input type="search" id="keyword" placeholder="输入礼物名称查询"/>
+                            <span id="search"><i class="fa fa-search"></i> 搜索</span>
+                        </hgroup>
+                    </div>
+                </form>
+                <!--/T_formSearchTool-->
+
+                <!--T_tableResponsive-->
+                <div class="T_tableResponsive">
+                    <table class="T_table T_tableBordered T_tableHover">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">序号</th>
+                            <th class="col-md-1">缩略图</th>
+                            <th class="col-md-2">礼物名称</th>
+                            <th class="col-md-2">礼物数量</th>
+                            <th class="col-md-2">礼物单价</th>
+                            <!--<th class="col-md-2">创建时间</th>-->
+                            <th class="col-md-2">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="evaluationtmpl">
+
+                        </tbody>
+                        <script id="arraystmpl" type="text/x-dot-template">
+                            {{ for(var i in it.list) { }}
+
+                            <tr>
+
+                                <td>{{= i }}</td>
+                                <td><img style="width: 80px; height: 80px;" src="http://{{= it.list[i].gifePic }}"/>
+                                </td>
+                                <td>{{= it.list[i].giftName }}</td>
+                                <td>{{= it.list[i].specialEffect }}</td>
+                                <td>{{= it.list[i].giftPrice }} 元</td>
+                                <!--<td>2018-05-17 12:41</td>-->
+                                <td>
+                                    <a class="T_btn T_btnSm T_btnP add_GifTypeBtn" data-id="{{= it.list[i].id }}"><i
+                                            class="fa fa-edit"></i> 修改</a>
+                                    <a class="T_btn T_btnSm T_btnD del_Btn" data-id="{{= it.list[i].id }}"><i
+                                            class="fa fa-trash-o"></i> 删除</a>
+                                </td>
+                            </tr>
+                            {{ } }}
+
+                        </script>
+                    </table>
+                </div>
+                <!--/T_tableResponsive-->
+                <!--T_pageToolbar-->
+                <div id="pagination3" class="page fl"></div>
+                <!--/T_pageToolbar-->
+            </div>
+        </div>
+    </section>
+    <!--/T_layout-->
+</div>
+<!--/主体内容-模块-->
+
+<!--Web弹层组件-(添加 || 修改)礼物-->
+<section class="T_modalWrap" id="add_GifTypeModal">
+    <div class="T_modalIbox">
+        <div class="T_modalBody" style="padding: 0;">
+            <form class="T_formIbox" style="height: 405px;overflow-y: auto;padding-right: 20px; padding-top: 15px;">
+                <div class="T_rows">
+                    <hgroup class="T_uploadGroup">
+                        <label>缩略图：</label>
+                        <div class="uploadPic_singlecontrol" id="uploadImageOne" datatype="OneUploadPic"
+                             errorMsg="图片不能为空！">
+									<span>
+										<!--<figure>
+											<img src="../Library/images/header-profile-skin-1.png"/>
+											<div><i></i></div>
+										</figure>-->
+									</span>
+                        </div>
+                    </hgroup>
+                </div>
+                <div class="clearfix"></div>
+                <div class="T_rows">
+                    <hgroup class="T_inputTextGroup">
+                        <label>礼物单价：</label>
+                        <div>
+                            <input type="text" id="giftPrice" placeholder="输入价格" datatype="IsNull" errorMsg="价格不能为空！"
+                                   style="width: 165px;"/>
+                            <span class="T_rightBtn">元</span>
+                        </div>
+                    </hgroup>
+                </div>
+                <div class="clearfix"></div>
+                <div class="T_rows">
+                    <hgroup class="T_inputTextGroup">
+                        <label>礼物数量：</label>
+                        <div>
+                            <input type="text" id="specialEffect" placeholder="输入数量" datatype="IsNull" errorMsg="数量不能为空！"
+                                   style="width: 165px;"/>
+                            <span class="T_rightBtn">个</span>
+                        </div>
+                    </hgroup>
+                </div>
+                <div class="clearfix"></div>
+                <div class="T_rows">
+                    <hgroup class="T_inputText">
+                        <label>礼物名称：</label>
+                        <input type="text" id="giftName" placeholder="输入名称" datatype="IsNull" errorMsg="名称不能为空！"/>
+                    </hgroup>
+                </div>
+            </form>
+        </div>
+        <footer class="T_modalFooter">
+            <button class="T_confirmBtn">提交</button>
+        </footer>
+    </div>
+</section>
+<!--/Web弹层组件-(添加 || 修改)礼物-->
+
+<script>
+    $(document).ready(function () {
+        var _num = 0,giftName;
+        // 搜索
+
+        $('#search').click(function () {
+            giftName = $('#keyword').val();
+            getDeviceList(_num,giftName);
+        })
+
+        //打开(添加 || 修改)礼物-弹窗层
+        $('body').on('click', '.add_GifTypeBtn', function () {
+            var ids = $(this).data('id');
+            var url = "http://120.77.83.200:8088/gife/insertOrUpdateGife";
+            if(ids){
+                getSingleData(ids);
+            }
+            Tui.Page({
+                type: 0,
+                title: '添加/修改-礼物',
+                area: ['650px', '500px'],
+                content: $('#add_GifTypeModal'),
+                success: function (btnIndex) {
+                    var data = {
+                        id: ids || '',
+                        gifePic:'',
+                        fileUpload:$('#uploadImageOne').find('img').data('value'),
+                        giftPrice: $('#giftPrice').val(),
+                        giftName: $('#giftName').val(),
+                        specialEffect:$('#specialEffect').val()
+                    };
+                    addGif(data,url)
+                }
+            });
+        })
+
+
+        function addGif(data,url) {
+            $.ajax({
+                type: "post",
+                url: url,
+                headers: {
+                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                },
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        Tui.closeAll($('#add_GifTypeModal'));
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                        getDeviceList(_num);
+                    } else {
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                    }
+                    //console.log(rs.message);
+                }
+            });
+        }
+
+
+        // 删除
+        $('body').on('click', '.del_Btn', function () {
+            var ids = $(this).data('id');
+            $.ajax({
+                type: "get",
+                url: "http://120.77.83.200:8088/gife/deleteGife",
+                headers: {
+                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                },
+                data: {ids: ids},
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'})
+                        getDeviceList(_num);
+                    } else {
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                    }
+                }
+            });
+
+        });
+
+
+        /**
+         *  根据ID 查询单条数据
+         **/
+
+        function getSingleData(id) {
+            //console.log(id);
+            $.ajax({
+                type: "get",
+                url: "http://120.77.83.200:8088/gife/gifeList",
+                headers: {
+                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                },
+                data: {id:id, num: 0,size: '10'},
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        console.log(rs.result);
+                    } else {
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                    }
+                    //console.log(rs.message);
+                }
+            });
+        }
+
+
+        getDeviceList(_num);
+
+        function getDeviceList(_num,giftName) {
+            var data = {
+                num: _num,
+                size: '10',
+                giftName:giftName || ''
+            };
+            $.ajax({
+                type: "get",
+                url: "http://120.77.83.200:8088/gife/gifeList",
+                headers: {
+                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                },
+                data: data,
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        //console.log(rs)
+                        paginael(rs.result);
+                        var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                        $('#evaluationtmpl').html(arrText);
+                    } else {
+                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                    }
+                    //console.log(rs.message);
+                }
+            });
+        }
+
+        function paginael(rs) {
+
+            $("#pagination3").pagination({
+                currentPage: rs.pageNum,
+                totalPage: rs.pages,
+                isShow: true,
+                count: 10,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                callback: function (current) {
+
+                    getDeviceList(current,giftName);
+                }
+            });
+        }
+
+    })
+</script>
+
+</body>
+</html>

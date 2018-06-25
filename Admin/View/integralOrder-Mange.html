@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="order-Mange.html"><i class="fa fa-home"></i> 订单列表</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool">
+							<div class="T_rows">
+								<hgroup class="T_inputSearch">
+									<label>订单号：</label>
+									<input type="search" id="orderCode" placeholder="输入订单号查询" style="width: 200px;" />
+								</hgroup>
+								
+								<hgroup class="T_inputSearch">
+									<label>用户昵称：</label>
+									<input type="search" id="nickName" placeholder="输入用户昵称查询" style="width: 200px;" />
+								</hgroup>
+								
+								<hgroup class="T_inputSearch">
+									<label>商品名称：</label>
+									<input type="search" id="commodityName" placeholder="输入商品名称查询" style="width: 200px;" />
+								</hgroup>
+								
+								<hgroup class="T_select">
+									<label>状态：</label>
+									<div class="select-control">
+										<cite class="select-type">全部</cite>
+										<i class="selectDown"></i>
+										<ul>
+											<li data-value="">全部</li>
+											<li data-value="0">待支付</li>
+											<li data-value="1,2">待发货</li>
+											<li data-value="3">已发货</li>
+										</ul>
+									</div>
+								</hgroup>
+								
+								<hgroup class="T_BtnGroup"  id="search">
+									<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+								</hgroup>
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">序号</th>
+										<th class="col-md-1">订单号</th>
+										<th class="col-md-1">商品LOGO</th>
+										<th class="col-md-1">商品名称</th>
+										<th class="col-md-1">用户昵称</th>
+										<th class="col-md-1">商品数量</th>
+										<th class="col-md-2">收货信息</th>
+										<th class="col-md-1">下单时间</th>
+										<th class="col-md-1">状态</th>
+										<th class="col-md-2">操作</th>
+									</tr>
+								</thead>
+								<tbody id="evaluationtmpl">
+
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+									{{ for(var i in it.list) { }}
+									<tr>
+										<td>{{= i }} </td>
+										<td>{{= it.list[i].orderCode || ''}}</td>
+										<td><img style="width: 80px; height: 80px;" src="http://{{= it.list[i].picId }}"/></td>
+										<td>{{= it.list[i].commodityName }}</td>
+										<td>{{= it.list[i].nickName }}</td>
+										<td>{{= it.list[i].num }}</td>
+										<td>
+											<p>收货人：{{= it.list[i].userName }}</p>
+											<p>收货电话：{{= it.list[i].contactNumber }}</p>
+											<p>收货地址：{{= it.list[i].addressDetail }}</p>
+										</td>
+										<td>{{= it.list[i].createTime }}</td>
+										{{? it.list[i].isPay == 0}}
+											<td><label class="T_label T_labelW search_GoodsBtn" >待支付</label></td>
+											<td></td>
+										{{?? it.list[i].orderStatus == 1 && it.list[i].isPay==1}}
+											<td><label class="T_label T_labelW search_GoodsBtn">待发货</label></td>
+											<td>
+												<a class="T_btn T_btnSm T_btnP send_GoodsBtn"  ><i class="fa fa-edit"></i> 发货</a>
+											</td>
+										{{??}}
+										<td><label class="T_label T_labelW search_GoodsBtn" data-expressCode="{{= it.list[i].expressCode }}"  data-courierCompany="{{= it.list[i].courierCompany }}">已发货</label></td>
+										<td></td>
+										{{?}}
+
+									</tr>
+									{{ } }}
+
+								</script>
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+
+						<!--T_pageToolbar-->
+						<div id="pagination3" class="page fl"></div>
+						<!--/T_pageToolbar-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<!--Web弹层组件-订单发货-->
+		<section class="T_modalWrap" id="send_GoodsModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>快递公司：</label>
+								<input type="text" id="courierCompany"  placeholder="输入快递公司" datatype="IsNull" errorMsg="快递公司不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>快递单号：</label>
+								<input type="text" id="expressCode" placeholder="输入快递单号" datatype="IsNull" errorMsg="快递单号不能为空！" />
+							</hgroup>
+						</div>
+					</form>
+				</div>
+				<footer class="T_modalFooter">
+					<button class="T_confirmBtn">提交</button>
+				</footer>
+			</div>
+		</section>
+		<!--/Web弹层组件-订单发货-->
+
+
+		<!--Web弹层组件-已发货 查看单号-->
+		<section class="T_modalWrap" id="search_GoodsModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>快递公司：</label>
+								<input type="text" id="_courierCompany" disabled = 'disabled'  placeholder="输入快递公司" datatype="IsNull" errorMsg="快递公司不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>快递单号：</label>
+								<input type="text" id="_expressCode" disabled = 'disabled' placeholder="输入快递单号" datatype="IsNull" errorMsg="快递单号不能为空！" />
+							</hgroup>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		
+		<script>
+			
+
+			
+			$(document).ready(function() {
+			    var _num = 0,orderType,orderCode,nickName,commodityName;
+
+                //打开(订单发货)-弹窗层
+                $('body').on('click','.send_GoodsBtn',function() {
+                    var id = $(this).data('id');
+                    var ordertype = 1;
+                    Tui.Page({
+                        type: 0,
+                        title: '发货',
+                        content: $('#send_GoodsModal'),
+                        success: function(btnIndex) {
+
+                            $.ajax({
+                                type: "get",
+                                url: "http://120.77.83.200:8088/back/orderDetailed/orderDeliveryByOrderId",
+                                headers: {
+                                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                                },
+                                data: {
+                                    id: id,
+                                    orderType:ordertype,
+                                    expressCode:$('#expressCode').val(),
+                                    courierCompany:$('#courierCompany').val()
+								},
+                                success: function (rs) {
+                                    if (rs.desc == "成功") {
+                                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                                        Tui.closeAll($('#send_GoodsModal'));
+                                        getOrderList(_num,orderType);
+                                    } else {
+                                        Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                                    }
+                                }
+                            });
+                        }
+                    });
+                });
+
+                //打开(订单发货)-弹窗层
+                $('body').on('click','.search_GoodsBtn',function() {
+                    var expressCode = $(this).attr('data-expressCode');
+                    var courierCompany = $(this).attr('data-courierCompany');
+
+                    var type = $(this).text();
+                    if(type == '已发货'){
+                        var ordertype = 2;
+
+                        $('#_courierCompany').val(courierCompany  );
+                        $('#_expressCode').val(expressCode );
+                        Tui.Page({
+                            type: 0,
+                            title: '发货信息',
+                            content: $('#search_GoodsModal'),
+                            success: function(btnIndex) {
+
+                            }
+                        });
+                    }
+                });
+
+
+
+
+				// 搜索
+
+				$('#search').click(function () {
+                    orderCode = $('#orderCode').val();
+                    nickName = $('#nickName').val();
+                    commodityName = $('#commodityName').val();
+                    orderType = $('.select-type').attr('data-value');
+                    getOrderList(_num,orderType,orderCode,nickName,commodityName);
+                })
+
+                getOrderList(_num,orderType);
+                //  获取 订单列表列表
+
+                function getOrderList(_num,orderType,_orderCode,_nickName,_commodityName) {
+                    var data ={
+                        orderStatus:orderType || '',
+                        orderType:1,
+                        num :_num,
+                        size :'5',
+                        orderCode:_orderCode || '',
+                        nickName:_nickName || '',
+                        commodityName:_commodityName || '',
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/orderDetailed/selectIntegralCommodityDetailedList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                paginael(rs.result);
+                               var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                               $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+
+                            getOrderList(current,orderType,orderCode,nickName,commodityName);
+                        }
+                    });
+                }
+
+
+
+				/**
+				 * iframe子页面跳转-事件
+				 */
+				$('.T_menuItem').click(function() {
+					//在iframe中调用父页面的子页面跳转-函数
+					parent.subPageMenuHref($(this));
+				})
+
+			})
+		</script>
+		
+	</body>
+</html>

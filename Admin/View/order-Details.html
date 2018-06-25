@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="order-Details.html"><i class="fa fa-home"></i> 订单详情</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+			
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="rows">
+					<div class="col-md-6">
+						<div class="T_ibox">
+							<header class="T_iboxTitle"><h5>订单信息</h5></header>
+							<div class="T_iboxContent">
+								<p><b>订单号：</b>3645456143</p>
+								<br />
+								<p><b>下单时间：</b>2018-05-17 12:41</p>
+								<br />
+								<p><b>订单状态：</b><label class="T_label T_labelW">待发货</label></p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="T_ibox">
+							<header class="T_iboxTitle"><h5>收货信息</h5></header>
+							<div class="T_iboxContent">
+								<p><b>收货人：</b>张三</p>
+								<br />
+								<p><b>收货电话：</b>15858989898</p>
+								<br />
+								<p><b>收货地址：</b>重庆南坪四公里</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="T_ibox">
+					<header class="T_iboxTitle"><h5>商品信息</h5></header>
+					<div class="T_iboxContent">
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">商品LOGO</th>
+										<th class="col-md-1">商品名称</th>
+										<th class="col-md-1">用户昵称</th>
+										<th class="col-md-1">商品数量</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><img style="width: 80px; height: 80px;" src="../Library/images/profile_small.jpg"/></td>
+										<td>泰迪熊</td>
+										<td>蜘蛛侠</td>
+										<td>2</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+			$(document).ready(function() {
+				
+				
+			})
+		</script>
+		
+	</body>
+</html>

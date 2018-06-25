@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="role-Mange.html"><i class="fa fa-home"></i> 角色管理</a>
+					</li>
+				</ul>
+				
+				<hgroup class="T_toolBtnGroup">
+					<a class="T_btn T_btnI add_RoleBtn"><i class="fa fa-plus"></i> 添加菜单</a>
+				</hgroup>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool">
+							<div class="T_rows">
+								<hgroup class="T_inputSearch">
+									<label>菜单名称：</label>
+									<input type="search" id="_roleName" placeholder="输入菜单名称查询" />
+									<span id="search"><i class="fa fa-search"></i> 搜索</span>
+								</hgroup>
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">序号</th>
+										<th class="col-md-1">菜单名称</th>
+										<th class="col-md-1">菜单图标</th>
+										<th class="col-md-1">创建时间</th>
+										<th class="col-md-1">操作</th>
+									</tr>
+								</thead>
+								<tbody id="evaluationtmpl">
+
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+									{{ for(var i in it.list) { }}
+									<tr>
+										<td>{{= i }} </td>
+										<td>{{= it.list[i].menuName }}</td>
+										<td>{{= it.list[i].icon }}</td>
+										<td>2018-05-17 12:41</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP add_RoleBtn" data-id="{{= it.list[i].id }}"><i class="fa fa-edit"></i> 修改</a>
+											<!--<a class="T_btn T_btnSm T_btnI change_PwsdBtn" data-id="{{= it.list[i].id }}"><i class="fa fa-edit"></i> 更改密码</a>-->
+											<a class="T_btn T_btnSm T_btnD del_Btn" data-id="{{= it.list[i].id }}"><i class="fa fa-trash-o"></i> 删除</a>
+										</td>
+
+									</tr>
+									{{ } }}
+
+								</script>
+
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+						<!--T_pageToolbar-->
+						<div id="pagination3" class="page fl"></div>
+						<!--/T_pageToolbar-->
+					</div>
+
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<!--Web弹层组件-(添加 || 修改)角色-->
+		<section class="T_modalWrap" id="add_RoleModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>菜单名称：</label>
+								<input type="text" id="menuName" placeholder="输入名称" datatype="IsNull" errorMsg="不能为空！" />
+							</hgroup>
+						</div>
+
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_select">
+								<label>菜单层级：</label>
+								<div class="select-control" datatype="Select" errorMsg="不能为空！">
+									<cite data-value="0" id="level">请选择</cite>
+									<i class="selectDown"></i>
+									<ul class="columnTypeList1" id="columnTypeList1">
+										<li data-value="1">一级菜单</li>
+										<li data-value="2">二级菜单</li>
+									</ul>
+								</div>
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows" id="parentMenuId" style="display: none">
+							<hgroup class="T_select">
+								<label>父级菜单ID：</label>
+								<div class="select-control " id="columnTypeList2" datatype="Select" errorMsg="不能为空！">
+									<cite data-value="0" id="parentId">请选择</cite>
+									<i class="selectDown"></i>
+									<ul class="columnTypeList2">
+
+									</ul>
+								</div>
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows" id="menuIconID" >
+							<hgroup class="T_select">
+								<label>菜单图标：</label>
+								<div class="select-control" datatype="Select" errorMsg="不能为空！">
+									<cite data-value="0" id="menuIcon">请选择</cite>
+									<i class="selectDown"></i>
+									<ul class="columnTypeList3">
+										<li data-value="fa-home">fa-home  <i class="fa fa-home"></i></li>
+										<li data-value="fa-tasks">fa-tasks  <i class="fa fa-tasks"></i></li>
+										<li data-value="fa-shopping-bag">fa-shopping-bag  <i class="fa fa-shopping-bag"></i></li>
+										<li data-value="fa-envelope">fa-envelope  <i class="fa fa-envelope"></i></li>
+										<li data-value="fa-film">fa-film  <i class="fa fa-film"></i></li>
+										<li data-value="fa-users">fa-users  <i class="fa fa-users"></i></li>
+										<li data-value="fa-sitemap">fa-sitemap  <i class="fa fa-sitemap"></i></li>
+										<li data-value="fa-cogs">fa-cogs  <i class="fa fa-cogs"></i></li>
+										<li data-value="fa-cog">fa-tasks  <i class="fa fa-cog"></i></li>
+									</ul>
+								</div>
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>菜单url：</label>
+								<input type="text" id="menuUrl" placeholder="输入菜单url" datatype="IsNull" errorMsg="不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_radio">
+								<label>是否启用：</label>
+								<div class="radio-control" datatype="Radio" errorMsg="不能为空！">
+									<label class="curActive" data-value="0">是</label>
+									<label data-value="1">否</label>
+								</div>
+							</hgroup>
+						</div>
+
+					</form>
+				</div>
+				<footer class="T_modalFooter">
+					<button class="T_confirmBtn">提交</button>
+				</footer>
+			</div>
+		</section>
+		<!--/Web弹层组件-(添加 || 修改)角色-->
+		
+		<script>
+			
+
+
+
+			
+			$(document).ready(function() {
+                var _num = 0,_menuName;
+
+
+                // 搜索
+
+                $('#search').click(function () {
+                    _menuName = $('#_roleName').val();
+                    getOrderList(_num,_menuName);
+                })
+
+                getOrderList(_num,_menuName);
+                //  获取 菜单列表列表
+
+                function getOrderList(_num,_menuName) {
+                    var data ={
+                        num :_num,
+                        size :'5',
+                        search:_menuName || '',
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/sMenu/selectMenuListByPageByThis",
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+
+
+
+                //打开(添加 || 修改)角色-弹窗层
+
+
+                $('body').on('click','.add_RoleBtn',function() {
+					var ids = $(this).data('id');
+					var url = 'http://120.77.83.200:8088/back/sMenu/insertMenu'
+					if(ids){
+                        getSingleData(ids)
+						url = 'http://120.77.83.200:8088/back/sMenu/updateMenuThis'
+					}
+                	//console.log(ids);
+                    Tui.Page({
+                        type: 0,
+                        title: '添加/修改-菜单',
+                        content: $('#add_RoleModal'),
+                        success: function(btnIndex) {
+                            var  data ={
+                                id:ids ||'',
+                                menuName :$('#menuName').val(),
+                                url :$('#menuUrl').val(),
+                                icon: $('#menuIcon').attr('data-value'),
+                                level:$('#level').attr('data-value'),
+                                parentId :$('#parentId').attr('data-value') || '',
+                                isUsing :$('.curActive').attr('data-value')
+                            };
+                             addMenu(data,url);
+                        }
+                    });
+                });
+
+
+
+                /**
+                 *  根据ID 查询菜单数据
+                 **/
+
+                function getSingleData(id) {
+                    //console.log(id);
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/sMenu/selectMenuById",
+                        data: {id:id},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs);
+                                $('#menuName').val(rs.result.menuName);
+                                $('#menuUrl').val(rs.result.url)
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+
+                $('#columnTypeList1 li').on('click',function(){
+                    var level = $(this).data('value');
+                    console.log(level);
+                    if(level == 1){
+                        $('#parentMenuId').hide();
+                        $('#menuIconID').show()
+                    }else{
+                        $('#parentMenuId').show();
+                        $('#menuIconID').hide()
+                        fristMenuList()
+                    }
+
+                });
+
+
+                // 渲染 所有一级菜单
+
+				function fristMenuList(){
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/sMenu/selectMenuAllById",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                console.log(rs);
+                                var html ='';
+                                for (var i = 0 ;i<rs.result.length; i++){
+                                    html += '<li data-value="'+rs.result[i].id+'">'+rs.result[i].menuName+'</li>'
+								}
+								$('.columnTypeList2').html(html);
+                                $('#columnTypeList2').vatSelect();
+
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+				}
+
+
+
+                // 删除
+                $('body').on('click','.del_Btn',function() {
+                    var ids = $(this).data('id');
+
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/sMenu/deleteMenuByThis",
+                        data: {id:ids},
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'})
+                                getOrderList(_num);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                        }
+                    });
+
+                });
+
+                function addMenu(data,url){
+                    $.ajax({
+                        type: "post",
+                        url: url,
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'})
+                                Tui.closeAll($('#add_RoleModal'));
+                                getOrderList(_num);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+                            getOrderList(current,_menuName);
+                        }
+                    });
+                }
+				
+			})
+		</script>
+		
+	</body>
+</html>

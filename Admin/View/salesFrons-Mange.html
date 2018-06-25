@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+			.td-title-bg {
+				width: 100px;
+				text-align: right;
+				font-weight: bold;
+				background-color: #F5F5F6;
+			}
+			
+			.card-ibox {
+			    height: 100px;
+			    margin-bottom: 30px;
+			}
+			
+			.card-ibox .icon {
+				width: 100px;
+				line-height: 100px;
+			    color: #FFFFFF;
+			    font-size: 40px;
+			    text-align: center;
+			    float: left;
+			}
+			
+			.card-ibox .body {
+			    background-color: #FFFFFF;
+				margin-left: 100px;
+			}
+			
+			.card-ibox .body header {
+				padding: 10px;
+				font-size: 24px;
+			}
+			
+			.card-ibox .body footer {
+				font-size: 14px;
+			    position: relative;
+			    border-top: 1px solid rgba(160,160,160,0.2);
+			    padding: 10px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="salesFrons-Mange.html"><i class="fa fa-home"></i> 销售额数据分析</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="rows">
+					<div class="col-md-2">
+						<!--T_accordionMenu_ibox-->
+						<div class="T_accordionMenu_ibox">
+							<hgroup class="T_accordionMenu_item">
+								<header data-toggle="accordionMenu" class="T_accordionMenu_title curActive" data-index="1" style="background-image: none;">总账统计</header>
+							</hgroup>
+							<hgroup class="T_accordionMenu_item">
+								<header data-toggle="accordionMenu" class="T_accordionMenu_title" data-index="2" style="background-image: none;">销售列表</header>
+							</hgroup>
+						</div>
+						<!--/T_accordionMenu_ibox-->
+					</div>
+					<div class="col-md-10">
+						<!--总账统计-->
+						<div class="rows" id="tab_1">
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgP"><i class="fa fa-users"></i></div>
+								<div class="body">
+									<header id="allUserCount">0</header>
+									<footer>所有用户 <a class="T_btn T_btnSm T_btnI pull-right T_menuItem" data-href="View/users-Total.html" data-title="用户总数合计明细">查看明细</a></footer>
+								</div>
+							</div>
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgW"><i class="fa fa-adn"></i></div>
+								<div class="body">
+									<header id="allUserSurplusCurrency">0 个</header>
+									<footer>用户剩余币 <a class="T_btn T_btnSm T_btnW pull-right T_menuItem" data-href="View/usersCoin-Total.html" data-title="用户剩余币合计明细">查看明细</a></footer>
+								</div>
+							</div>
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgI"><i class="fa fa-dropbox"></i></div>
+								<div class="body">
+									<header id="numberAllUnshippedDolls">0 个</header>
+									<footer>未发货娃娃  <a class="T_btn T_btnSm T_btnP pull-right T_menuItem" data-href="View/unShipped-Total.html" data-title="未发货娃娃数量明细">查看明细</a></footer>
+								</div>
+							</div>
+							
+
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgI"><i class="fa fa-github-alt"></i></div>
+								<div class="body">
+									<header id="totals">0 个</header>
+									<footer>抓中娃娃   <a class="T_btn T_btnSm T_btnP pull-right T_menuItem" data-href="View/catchGoods-Total.html" data-title="抓中娃娃合计明细">查看明细</a></footer>
+								</div>
+							</div>
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgS"><i class="fa fa-gift"></i></div>
+								<div class="body">
+									<header id="totalDollTotal">0 个</header>
+									<footer>已发娃娃   <a class="T_btn T_btnSm T_btnS pull-right T_menuItem" data-href="View/sendGoods-Total.html" data-title="已发娃娃合计明细">查看明细</a></footer>
+								</div>
+							</div>
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgW"><i class="fa fa-money"></i></div>
+								<div class="body">
+									<header id="totalDollChangeNum">0 个</header>
+									<footer>娃娃兑换积分</footer>
+								</div>
+							</div>
+						</div>
+						<!--/总账统计-->
+						
+						<div class="T_ibox T_hide m_t_md" id="tab_2">
+							<!--销售列表-模块-->
+							<div class="T_iboxContent">
+								<!--T_formSearchTool-->
+								<form class="T_formSearchTool">
+									<div class="T_rows">
+										
+										<hgroup class="T_select">
+											<label>充值类型：</label>
+											<div class="select-control">
+												<cite class="select-type">全部</cite>
+												<i class="selectDown"></i>
+												<ul>
+													<li data-value="">全部</li>
+													<li data-value="1">金币</li>
+													<li data-value="3">钻石</li>
+												</ul>
+											</div>
+										</hgroup>
+
+
+										
+										<hgroup class="T_BtnGroup" id="search">
+											<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+										</hgroup>
+									</div>
+								</form>
+								<!--/T_formSearchTool-->
+								
+								<!--T_tableResponsive-->
+								<div class="T_tableResponsive">
+									<table class="T_table T_tableBordered T_tableHover">
+										<thead>
+											<tr>
+												<th class="col-md-1">序号</th>
+												<th class="col-md-2">套餐类型</th>
+												<th class="col-md-2">套餐价格</th>
+												<th class="col-md-2">数量</th>
+												<th class="col-md-2">充值类型</th>
+											</tr>
+										</thead>
+
+										<tbody id="evaluation">
+
+										</tbody>
+										<script id="arraystmpl" type="text/x-dot-template">
+											{{ for(var i in it.list) { }}
+											<tr>
+												<td>{{= i}}  </td>
+												<td>{{= it.list[i].rechName }}</td>
+												<td>{{= it.list[i].rmb }} 元</td>
+												<td>{{= it.list[i].num }}</td>
+												<td>{{= it.list[i].mealTypeDidPlay }}</td>
+											</tr>
+											{{ } }}
+										</script>
+									</table>
+								</div>
+								<!--/T_tableResponsive-->
+								<!--T_pageToolbar-->
+								<div id="pagination3" class="page fl"></div>
+								<!--/T_pageToolbar-->
+							</div>
+							<!--/销售列表-模块-->
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+			$(document).ready(function() {
+                var _num = 0,rechargeType;
+                getSellInfo();
+                function getSellInfo() {
+
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/marketingManagement/analysisSalesTurnoverData",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs)
+
+								$('#allUserCount').text(rs.result.allUserCount);
+                                $('#totals').text(rs.result.totals + '个');
+                                $('#totalDollTotal').text(rs.result.totalDollTotal + '个')
+                                $('#allUserSurplusCurrency').text(rs.result.allUserSurplusCurrency + '个');
+                                $('#numberAllUnshippedDolls').text(rs.result.numberAllUnshippedDolls + '个');
+                                $('#totalDollChangeNum').text(rs.result.totalDollChangeNum + '个')
+
+
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                        }
+                    });
+                }
+
+                $('#search').click(function () {
+                    rechargeType = $('.select-type').attr('data-value');
+                    //collectionType = 1;
+                    getSellList(_num,rechargeType);
+                });
+
+                getSellList(_num)
+                function getSellList(_num,rechargeType) {
+                    //console.log(1)
+                    var data ={
+                        rechargeType:rechargeType ||'',
+                        num :_num,
+                        size :'5'
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/marketingManagement/selectRechargeSalesList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text());
+                                $('#evaluation').html(arrText(rs.result));
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+
+                            getSellList(current,rechargeType)
+                        }
+                    });
+                }
+
+
+				
+				/**
+				 * iframe子页面跳转-事件
+				 */
+				$('.T_menuItem').click(function() {
+					//在iframe中调用父页面的子页面跳转-函数
+					parent.subPageMenuHref($(this));
+				})
+				
+				/**
+				 * 左侧导航菜单-事件
+				 */
+				$('[data-toggle=accordionMenu]').click(function() {
+					var index = $(this).attr('data-index')
+					
+					$('[data-toggle=accordionMenu]').removeClass('curActive')
+					
+					$(this).addClass('curActive')
+					
+					if (index == '1') { //1.总账统计
+						$('#tab_2').addClass('T_hide')
+						$('#tab_1').removeClass('T_hide')
+					} else if (index == '2') { //2.销售列表
+						$('#tab_1').addClass('T_hide')
+						$('#tab_2').removeClass('T_hide')
+					}
+				})
+				
+			})
+		</script>
+		
+	</body>
+</html>

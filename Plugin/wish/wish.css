@@ -1,0 +1,125 @@
+
+#main {
+	width: 100%;
+	position: relative;
+}
+
+.paper {
+	width: 235px;
+	height: auto;
+	overflow: hidden;
+	position: absolute;
+	color: #666;
+}
+
+.paper dt {
+	width: 233px;
+	height: 68px;
+	cursor: move;
+	padding-left: 15px;
+	padding-top: 48px;
+}
+
+.paper dt .username {
+	font-size: 13px;
+	float: left;
+	color: #3875D7;
+	padding-left: 5px;
+}
+
+.paper dt .num {
+	font-size: 12px;
+	float: right;
+	color: #81C01A;
+	padding-right: 10px;
+}
+
+.paper .content {
+	width: 233px;
+	height: auto;
+	overflow: hidden;
+	padding: 5px 5px 5px 25px;
+	font-size: 12px;
+	word-break: break-all;
+	word-wrap: normal;
+	line-height: 18px;
+}
+
+.paper .bottom {
+	width: 233px;
+	height: 71px;
+	padding: 35px 15px 0 25px;
+}
+
+.paper .bottom .time {
+	font-size: 12px;
+	color: #999999;
+	float: left;
+}
+
+.paper .bottom .close {
+	height: 24px;
+	font-size: 16px;
+	float: right;
+	display: block;
+}
+
+.a1 dt {
+	background: url(images/a1_1.gif);
+}
+
+.a1 .content {
+	background: url(images/a1_2.gif) repeat-y -2px;
+}
+
+.a1 .bottom {
+	background: url(images/a1_3.gif) no-repeat;
+}
+
+.a2 dt {
+	background: url(images/a2_1.gif);
+}
+
+.a2 .content {
+	background: url(images/a2_2.gif) repeat-y -2px;
+}
+
+.a2 .bottom {
+	background: url(images/a2_3.gif) no-repeat;
+}
+
+.a3 dt {
+	background: url(images/a3_1.gif);
+}
+
+.a3 .content {
+	background: url(images/a3_2.gif) repeat-y -2px;
+}
+
+.a3 .bottom {
+	background: url(images/a3_3.gif) no-repeat;
+}
+
+.a4 dt {
+	background: url(images/a4_1.gif);
+}
+
+.a4 .content {
+	background: url(images/a4_2.gif) repeat-y -2px;
+}
+
+.a4 .bottom {
+	background: url(images/a4_3.gif) no-repeat;
+}
+
+.a5 dt {
+	background: url(images/a5_1.gif);
+}
+
+.a5 .content {
+	background: url(images/a5_2.gif) repeat-y -2px;
+}
+
+.a5 .bottom {
+	background: url(images/a5_3.gif) no-repeat;
+}

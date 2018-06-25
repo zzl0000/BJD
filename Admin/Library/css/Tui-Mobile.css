@@ -1,0 +1,503 @@
+
+/*  登录页-模块
+ *	author:			Tony
+ *	date:			2017-11-17
+*/
+.login-layout header {
+	width: 100%;
+	height: 45px;
+	background-color: #006EC6;
+	position: absolute;
+	top: 0;
+}
+
+.login-layout header h1 {
+	height: 45px;
+	line-height: 45px;
+	padding: 0 20px;
+	color: #FFFFFF;
+	font-size: 24px;
+	font-weight: normal;
+	text-align: center;
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+/*  T-Admin后台管理系统(UI框架)-模块
+ *	author:			Tony
+ *	date:			2017-11-20
+*/
+
+/*  首页(头部)-模块
+ *	author:			Tony
+ *	date:			2017-11-17
+*/
+.T_logoIcon {
+    width: 100%;
+    text-align: center;
+    padding: 0px 70px;
+    position: absolute;
+}
+
+.T_collapseMenu {
+	display: none;
+}
+
+.T_navbarMin {
+	line-height: 50px;
+    padding: 0px 10px;
+    float: left;
+    background-color: #0783e5;
+    position: relative;
+    z-index: 10;
+    display: block;
+}
+
+.T_navbarMin a {
+    line-height: 27px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    margin: 7.5px 0;
+    padding: 0px 10px;
+    display: block;
+    background-color: #006EC6;
+    border: 4px solid #006EC6;
+}
+
+.T_navbarMin a:hover{
+	background-color: #0783e5;
+	border: 4px solid #006EC6;
+}
+
+.T_settingMin {
+	line-height: 50px;
+    padding: 0px 10px;
+    float: right;
+    background-color: #0783e5;
+    position: relative;
+    z-index: 10;
+    display: block;
+}
+
+.T_settingMin a {
+    line-height: 27px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    margin: 7.5px 0;
+    padding: 0px 10px;
+    display: block;
+    background-color: #006EC6;
+    border: 4px solid #006EC6;
+}
+
+.T_settingMin a:hover {
+	background-color: #0783e5;
+	border: 4px solid #006EC6;
+}
+
+.T_navMenu {
+    width: 200px;
+    height: auto;
+    background-color: #FFFFFF;
+    position: absolute;
+    top: 0px;
+    right: -200px;
+    z-index: 10;
+}
+
+.T_navMenu hgroup.T_topDown {
+    float: none;
+    background-color: transparent;
+}
+
+.T_navMenu hgroup.T_topDown a {
+	height: 40px;
+	line-height: 40px;
+	color: #333333;
+	font-size: 14px;
+	padding: 0px 15px;
+	display: block;
+	position: relative;
+	border-bottom: 1px solid #e7eaec;
+	border-right: none;
+}
+
+.T_navMenu hgroup.T_topDown a .T_label {
+	position: relative;
+	left: 0px;
+	top: -10px;
+}
+
+.T_navMenu hgroup.T_topDown cite {
+	text-align: left;
+}
+
+.T_navMenu hgroup.T_topDown ul {
+	width: 100%;
+    position: static;
+    right: 0px;
+    top: 0px;
+    z-index: 10;
+    border: none;
+    box-shadow: none;
+    display: block !important;
+    background-color: #FFFFFF;
+}
+
+.T_navMenu hgroup.T_topDown ul li {
+	color: #333333;
+}
+
+.T_navMenu hgroup.T_topDown. ul li.divline {
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.T_navMenu hgroup.T_topDown.T_fullScreen {
+	border-top: 1px solid #e7eaec;
+}
+
+.T_navMenu hgroup.T_topDown a:hover,
+.T_navMenu hgroup.T_topDown cite:hover {
+	color: #333333;
+	background-color: #F5F5F5;
+}
+
+/*  首页(左侧导航栏)-模块
+ *	author:			Tony
+ *	date:			2017-11-20
+*/
+.T_sideBar {
+    height: 100%;
+    margin-left: -200px;
+    position: fixed;
+    top: 0px;
+    z-index: 99999;
+}
+
+.T_sideBar section {
+	position: absolute;
+}
+
+/*  首页(右侧主体)-模块
+ *	author:			Tony
+ *	date:			2017-11-20
+*/
+.T_iframeContent {
+	height: calc(100%);
+}
+
+/*  Iframe-Tab菜单切换导航-模块
+ *	author:			Tony
+ *	date:			2017-11-17
+*/
+.T_headTabs {
+	display: none;
+}
+
+/*  表格控件-模块
+ *	author:			Tony
+ *	date:			2017-11-17
+*/
+.T_tableResponsive {
+    overflow-y: hidden;
+	overflow-x: auto;
+}
+
+.T_table > thead > tr > th,
+.T_table > tbody > tr > td, 
+.T_table > thead > tr > td {
+    white-space: nowrap;  
+}
+
+.T_table .T_checkbox .checkbox-control label {
+	margin-bottom: 0;
+}
+
+/*  表单控件-模块
+ *	author:			Tony
+ *	date:			2017-11-17
+*/
+.T_errorMsg,
+.T_inputTextGroup span.T_errorMsg,
+.T_uploadGroup span.T_errorMsg,
+.T_loginFormIbox .T_rows hgroup span.T_errorMsg {
+	width: auto;
+	height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+    color: #FF0000;
+    font-size: 12px;
+    text-align: left;
+    display: block;
+    border-radius: 4px;
+    background-color: #fde3e3;
+    border: none;
+    position: absolute;
+    left: 0;
+    bottom: -42px;
+    z-index: 200000;
+}
+
+.T_formIbox .T_rows hgroup.T_editor span.T_errorMsg {
+	
+}
+
+.T_errorMsg i,
+.T_uploadGroup span.T_errorMsg i {
+	width: 35px;
+    height: 10px;
+    margin: 0;
+    display: block;
+    background: url(../../../Library/images/erroArr_top_icon.png) no-repeat center;
+    position: absolute;
+    left: 0px;
+    top: -7px;
+}
+
+.T_formIbox .T_rows {
+	padding-bottom: 10px;
+	float: none;
+}
+
+.T_submitBtn a {
+	display: block;
+}
+
+.T_formSearchTool hgroup {
+	margin-right: 0;
+	position: relative;
+	float: none;
+}
+
+.T_floatL {
+	float: none !important;
+}
+
+.T_formIbox .T_inputText label, 
+.T_formIbox .T_inputTextGroup label, 
+.T_formIbox .T_textareaText label, 
+.T_formIbox .T_inputSearch label, 
+.T_formIbox .T_checkbox label, 
+.T_formIbox .T_radio label, 
+.T_formIbox .T_calendar label, 
+.T_formIbox .T_select label, 
+.T_formIbox .T_editor label, 
+.T_formIbox .T_uploadGroup label, 
+.T_formIbox .T_mapGroup label {
+	text-align: left;
+}
+
+.T_inputText label, 
+.T_inputTextGroup label, 
+.T_inputTextGroup input, 
+.T_inputTextGroup span, 
+.T_inputTextGroup div, 
+.T_textareaText div, 
+.T_textareaText label, 
+.T_inputSearch label, 
+.T_checkbox label, 
+.T_radio label, 
+.T_calendar label, 
+.T_calendar div, 
+.T_select label, 
+.T_editor label, 
+.T_inputText input, 
+.T_textareaText textarea, 
+.T_inputSearch input, 
+.T_inputSearch span, 
+.T_calendar div span, 
+.T_calendar div i.clearIcon, 
+.T_checkbox .checkbox-control, 
+.T_radio .radio-control, 
+.T_select .select-control, 
+.T_select .select-control i.selectDown, 
+.T_uploadGroup label, 
+.T_uploadGroup div, 
+.T_uploadGroup span, 
+.T_uploadGroup .T_uploadFileBtn, 
+.T_uploadGroup div.uploadPic_singlecontrol, 
+.T_mapGroup label {
+    float: none;
+}
+
+.T_inputText label,
+.T_textareaText label,
+.T_inputSearch label,
+.T_checkbox label,
+.T_radio label,
+.T_calendar label,
+.T_select label {
+	height: 25px;
+	line-height: 25px;
+	width: auto;
+}
+
+.T_inputText input,
+.T_inputTextGroup input,
+.T_textareaText textarea,
+.T_inputSearch input,
+.T_calendar div input,
+.T_checkbox .checkbox-control,
+.T_radio .radio-control,
+.T_select .select-control cite {
+	width: 100%;
+}
+
+.T_submitBtn,
+.T_uploadGroup div.uploadPic_control,
+.T_uploadGroup div.uploadFile_control, 
+.T_editor .editor-control .editor_body,
+.T_mapGroup div.map_control {
+	margin-left: 0;
+}
+
+.T_inputTextGroup input {
+	padding: 0 45px;
+}
+
+.T_inputTextGroup span {
+	position: absolute;
+	top: 0px;
+	z-index: 10;
+}
+
+.T_inputTextGroup span.T_leftBtn {
+	left: 0px;
+}
+
+.T_inputTextGroup span.T_rightBtn {
+	right: 0px;
+}
+
+.T_inputSearch span {
+    position: absolute;
+    right: 0px;
+    top: 25px;
+}
+
+.T_calendar div span {
+    position: absolute;
+    right: 0;
+    top: 0px;
+}
+
+.T_calendar div i.clearIcon {
+    position: absolute;
+    right: 35px;
+    top: 0px;
+}
+
+.T_calendarTo cite {
+	display: none;
+}
+
+.T_radio .radio-control label,
+.T_checkbox .checkbox-control label { 
+	margin-bottom: 10px;
+}
+
+.T_select {
+	height: auto;
+}
+
+.T_select .select-control i.selectDown {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.T_BtnGroup a,
+.T_uploadGroup .T_uploadFileBtn a {
+	display: block;
+}
+
+.T_uploadGroup div {
+	
+}
+
+.T_uploadGroup span cite {
+	max-width: 70%;
+}
+
+.T_uploadGroup div.uploadFile_control {
+	padding: 10px 10px;
+	border: 1px solid #DDDDDD;
+}
+
+.T_formIbox .T_inputText em.T_textCount,
+.T_formIbox .T_inputTextGroup em.T_textCount {
+	height: 25px;
+	line-height: 25px;
+    position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.T_checkbox .checkbox-control:after,
+.T_radio .radio-control:after,
+.T_select .select-control:after,
+.T_calendarTo:after,
+.T_uploadGroup div:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.T_mapGroup div.map_control .T_inputText span {
+	display: none;
+}
+
+/*  邮箱(收件箱)控件-模块
+ *	author:			Tony
+ *	date:			2017-11-22
+*/
+.T_table.T_tableMail > tbody > tr > td {
+	word-break: keep-all;
+	white-space:nowrap;
+	position: static;
+    display: table-cell;
+}
+
+.T_iboxMailRight .T_iboxTitle {
+	height: 125px;
+}
+
+.T_iboxMailRight .T_iboxTitle .T_iboxTools {
+	line-height: initial;
+    margin-bottom: 20px; 
+    margin-top: 0;
+    display: block;
+    float: none;
+}
+
+.T_iboxMailRight .T_iboxTitle h5 {
+	float: none;
+}
+
+.T_iboxMailRight .T_iboxTitle .T_iboxTools .T_inputSearch span {
+	top: 0px;
+}
+
+.T_iboxMailRight .T_iboxContent .T_formSearchTool .T_BtnGroup {
+	float: left;
+}
+
+.T_iboxMailRight .T_iboxContent .T_formSearchTool .T_BtnGroup a {
+	display: inline-block;
+}
+
+/*  邮箱(查看邮件详情)控件-模块
+ *	author:			Tony
+ *	date:			2017-11-22
+*/
+.T_iboxMailDetail .T_iboxTitle div p time {
+	float: none;
+}

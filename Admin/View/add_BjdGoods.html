@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<!--vatUploader图片/文本文件上传插件-->
+		<script src="../../Plugin/upload/plupload.full.min.js"></script>
+		<script src="../../Library/js/vatUploader.js"></script>
+		<!--/vatUploader图片/文本文件上传插件-->
+		
+		<!--百度编辑器配置文件-->
+		<script src="../../Plugin/ueditor/ueditor.config.js"></script>
+		<script src="../../Plugin/ueditor/ueditor.all.js"></script>
+		<!--/百度编辑器配置文件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="add_BjdGoods.html"><i class="fa fa-home"></i> 添加/修改娃娃</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<form class="T_formIbox">
+							<div class="T_rows">
+								<hgroup class="T_select">
+									<label>娃娃分类：</label>
+									<div class="select-control" datatype="Select" errorMsg="娃娃分类不能为空！">
+										<cite class="select-type" data-value="">请选择</cite>
+										<i class="selectDown"></i>
+										<ul class="columnTypeList">
+
+										</ul>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>娃娃名称：</label>
+									<input type="text" placeholder="输入名称" id="commodityName" datatype="IsNull" errorMsg="名称不能为空！" />
+								</hgroup>
+							</div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>运费：</label>
+									<input type="text" placeholder="输入运费" id="expressPrice" class="onlyInteger" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>可兑换积分：</label>
+									<input type="text" placeholder="输入可兑换积分" id="convertibilityIntegral" class="onlyInteger"  datatype="IsNull" errorMsg="可兑换积分不能为空！" />
+								</hgroup>
+							</div>
+
+							<!--<div class="clearfix"></div>-->
+							<!--<div class="T_rows">-->
+								<!--<hgroup class="T_inputText">-->
+									<!--<label>娃娃价格：</label>-->
+									<!--<input type="text" placeholder="输入娃娃价格" id="" name="commodityOrder"  datatype="IsNull" errorMsg="排序不能为空！" />-->
+								<!--</hgroup>-->
+							<!--</div>-->
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>兑换单价：</label>
+									<input type="text" placeholder="输入兑换单价" id="unitPrice" class="onlyNumber"   datatype="IsNull" errorMsg="兑换单价不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>库存数量 ：</label>
+									<input type="text" placeholder="输入库存数量" id="inventoryNum" class="onlyInteger"  datatype="IsNull" errorMsg="库存不能为空！" />
+								</hgroup>
+							</div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>商品摘要：</label>
+									<input type="text" placeholder="输入商品摘要" id="commodityAbstract"   datatype="IsNull" errorMsg="商品摘要不能为空！" />
+								</hgroup>
+							</div>
+
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_uploadGroup">
+									<label>娃娃LOGO：</label>
+									<div class="uploadPic_singlecontrol" id="uploadImageOne" datatype="OneUploadPic" errorMsg="图片不能为空！">
+										<span>
+											<!--<figure>
+												<img src="../Library/images/header-profile-skin-1.png"/>
+												<div><i></i></div>
+											</figure>-->
+										</span>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_textareaText">
+									<label>娃娃备注：</label>
+									<div>
+										<textarea id="remark" rows="5" placeholder="输入备注"  datatype="IsNull" dataCount="20" errorMsg="备注不能为空！"></textarea>
+										<em class="T_textCount"><b>0</b>/20个字符</em>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows T_floatN">
+								<hgroup class="T_editor">
+									<label>内容：</label>
+									<div class="editor-control" datatype="UeditorCont" errorMsg="内容不能为空！">
+										<!--加载百度编辑器的容器 -->
+										<script id="container" class="editor_body" name="content" type="text/plain"></script>
+										<!--/加载百度编辑器的容器 -->
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_BtnGroup T_submitBtn">
+									<a class="T_btn T_btnI" id="submitSave">保存</a>
+								</hgroup>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+
+            //实例化编辑器
+            var ue = UE.getEditor('container', {})
+
+			$(document).ready(function() {
+                var ids = sessionStorage.getItem('ids');
+                if(ids == 'undefined'){
+                    ids = '';
+                }
+                var url = "http://120.77.83.200:8088/back/commodityBasic/insertCommodityBasic";
+                if(ids != ''){
+                    url ="http://120.77.83.200:8088/back/commodityBasic/updateCommodityBasic";
+                    getSingleData(ids);
+                }
+			    
+				$('#submitSave').on('click', function(e){
+				    e.preventDefault();
+
+                   // 表单验证数组
+                    var ValidateArray = [
+                        $('#commodityName'),
+                        $('#convertibilityIntegral'),
+                        $('#unitPrice'),
+                        $('#unitPrice'),
+                        $('#inventoryNum'),
+                        $('#commodityAbstract')
+                    ]
+
+                    //判断表单控件是否通过验证
+                    if(!$(ValidateArray).IsValidateAll({bScroll: false})){
+                        return;
+                    }else{
+                        var data = {
+                            id: ids,
+                            commodityName:$('#commodityName').val(),
+                            expressPrice:$('#expressPrice').val(),
+                            convertibilityIntegral:$('#convertibilityIntegral').val(),
+                            unitPrice:$('#unitPrice').val(),
+                            inventoryNum:$('#inventoryNum').val(),
+                            commodityAbstract:$('#commodityAbstract').val(),
+                            remark:$('#remark').val(),
+                            fileUpload:$('#uploadImageOne').find('img').data('value'),
+                            commodityDetails: ue.getContent()
+                        }
+                        addBjdGoods(data,url);
+                    }
+
+				});
+
+
+                /**
+                 * 渲染分类列表
+                 **/
+                getColumnTypeList()
+                function getColumnTypeList() {
+                    var data = {
+                        num: 0,
+                        size: '10',
+                        columnType:'1'
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/home/subjectCategoryList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                // <li data-value="1">布娃娃</li>
+                                // <li data-value="2">毛线娃娃</li>
+                                var html = '';
+                                var data = rs.result.list;
+                                for(var i = 0; i< data.length; i++){
+                                    html += '<li data-value="'+ data[i].id + '">'+data[i].columnName+'</li>';
+                                }
+                                $('.columnTypeList').html(html);
+                                $('.select-control').vatSelect();
+
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                // 渲染单个详情
+
+                function getSingleData(id) {
+                    console.log(id)
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/commodityBasic/selectCommodityBasicById",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {id:id},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs);
+                                $('#commodityName').val(rs.result.commodityName);
+                                $('#expressPrice').val(rs.result.expressPrice);
+                                $('#convertibilityIntegral').val(rs.result.convertibilityIntegral);
+                                $('#unitPrice').val(rs.result.unitPrice);
+                                $('#inventoryNum').val(rs.result.inventoryNum);
+                                $('#commodityAbstract').val(rs.result.commodityAbstract)
+                                $('#remark').val(rs.result.remark)
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+
+
+                function addBjdGoods(data,url) {
+
+                    $.ajax({
+                        type: "post",
+                        url:url ,
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                                parent.closeIframeTabs('View/bjd-Mange.html')
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+				
+			})
+		</script>
+		
+	</body>
+</html>

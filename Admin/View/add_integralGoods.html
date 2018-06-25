@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<!--vatUploader图片/文本文件上传插件-->
+		<script src="../../Plugin/upload/plupload.full.min.js"></script>
+		<script src="../../Library/js/vatUploader.js"></script>
+		<!--/vatUploader图片/文本文件上传插件-->
+		
+		<!--百度编辑器配置文件-->
+		<script src="../../Plugin/ueditor/ueditor.config.js"></script>
+		<script src="../../Plugin/ueditor/ueditor.all.js"></script>
+		<!--/百度编辑器配置文件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="add_integralGoods.html"><i class="fa fa-home"></i> 添加/修改商品</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<form class="T_formIbox">
+							<div class="T_rows">
+								<hgroup class="T_select">
+									<label>商品分类：</label>
+									<div class="select-control" datatype="Select" errorMsg="娃娃分类不能为空！">
+										<cite class="select-type" id="integralCommodityType" data-value="">请选择</cite>
+										<i class="selectDown"></i>
+										<ul class="columnTypeList">
+											<li data-value="1">娃娃部落</li>
+											<li data-value="2">小仙女必备</li>
+											<li data-value="3">实用品</li>
+										</ul>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>积分商品名称：</label>
+									<input type="text" placeholder="输入名称" id="commodityName" datatype="IsNull" errorMsg="名称不能为空！" />
+								</hgroup>
+							</div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>运费：</label>
+									<input type="text" placeholder="输入运费" class="onlyNumberPoint" id="expressPrice" datatype="IsNull" errorMsg="不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>原价：</label>
+									<input type="text" placeholder="输入原价"  class="onlyNumberPoint" id="originalPrice"  datatype="IsNull" errorMsg="可兑换积分不能为空！" />
+								</hgroup>
+							</div>
+
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>现价：</label>
+									<input type="text" placeholder="输入现价"  class="onlyNumberPoint" id="realPrice"   datatype="IsNull" errorMsg="兑换单价不能为空！" />
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>库存数量 ：</label>
+									<input type="text" placeholder="输入库存数量"  class="onlyInteger" id="inventoryNum"  datatype="IsNull" errorMsg="库存不能为空！" />
+								</hgroup>
+							</div>
+
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_uploadGroup">
+									<label>商品LOGO：</label>
+									<div class="uploadPic_singlecontrol" id="uploadImageOne" datatype="OneUploadPic" errorMsg="图片不能为空！">
+										<span>
+											<!--<figure>
+												<img src="../Library/images/header-profile-skin-1.png"/>
+												<div><i></i></div>
+											</figure>-->
+										</span>
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+
+
+							<div class="clearfix"></div>
+							<div class="T_rows T_floatN">
+								<hgroup class="T_editor">
+									<label>内容：</label>
+									<div class="editor-control" datatype="UeditorCont" errorMsg="内容不能为空！">
+										<!--加载百度编辑器的容器 -->
+										<script id="container" class="editor_body" name="content" type="text/plain"></script>
+										<!--/加载百度编辑器的容器 -->
+									</div>
+								</hgroup>
+							</div>
+							<div class="clearfix"></div>
+							<div class="T_rows">
+								<hgroup class="T_BtnGroup T_submitBtn">
+									<a class="T_btn T_btnI" id="submitSave">保存</a>
+								</hgroup>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+
+            //实例化编辑器
+            var ue = UE.getEditor('container', {})
+
+			$(document).ready(function() {
+                var ids = sessionStorage.getItem('ids');
+                if(ids == 'undefined'){
+                    ids = '';
+                }
+                var url = "http://120.77.83.200:8088/back/integral/insertIntegralCommodity";                if(ids != ''){
+                    url ="http://120.77.83.200:8088/back/integral/updateIntegralCommodity";
+                    getSingleData(ids);
+                }
+			    
+				$('#submitSave').on('click', function(e){
+				    e.preventDefault();
+
+                   // 表单验证数组
+                    var ValidateArray = [
+                        $('#commodityName'),
+                        $('#expressPrice'),
+                        $('#originalPrice'),
+                        $('#realPrice'),
+                        $('#inventoryNum'),
+                    ]
+
+                    //判断表单控件是否通过验证
+                    if(!$(ValidateArray).IsValidateAll({bScroll: false})){
+                        return;
+                    }else{
+                        var data = {
+                            id: ids,
+
+                            commodityName:$('#commodityName').val(),
+                            expressPrice:$('#expressPrice').val(),
+                            originalPrice:$('#originalPrice').val(),
+                            realPrice:$('#realPrice').val(),
+                            inventoryNum:$('#inventoryNum').val(),
+                            integralCommodityType:$('#integralCommodityType').attr('data-value'),
+                            fileUpload:$('#uploadImageOne').find('img').data('value'),
+                            commodityDetails: ue.getContent()
+                        }
+                        addBjdGoods(data,url);
+                    }
+
+				});
+
+                // 渲染单个详情
+
+                function getSingleData(id) {
+                    console.log(id)
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/integral/integralCommodity",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {id:id},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                //console.log(rs);
+                                $('#commodityName').val(rs.result.commodityName);
+                                $('#expressPrice').val(rs.result.expressPrice);
+                                $('#originalPrice').val(rs.result.originalPrice);
+                                $('#realPrice').val(rs.result.realPrice);
+                                $('#inventoryNum').val(rs.result.inventoryNum);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+
+
+                function addBjdGoods(data,url) {
+
+                    $.ajax({
+                        type: "post",
+                        url:url ,
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+								setTimeout(function () {
+                                    parent.closeIframeTabs('View/integral-Mange.html')
+                                },1000)
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+				
+			})
+		</script>
+		
+	</body>
+</html>

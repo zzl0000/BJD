@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统-登录</title>
+		<link rel="stylesheet" href="../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../Library/css/Reset-style.css"/>
+		<!--/重置样式表-->
+		
+		<link rel="stylesheet" href="Library/css/Tui-Common.css"/>
+		
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="Library/css/Tui-PC.css" media="screen and (min-width: 1024px)"/>
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+		
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)"/>
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架(jquery.js)-->
+		<script src="../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架(jquery.js)-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+		
+		<!--IE浏览器版本过低提示iealert插件-->
+		<script src="../Plugin/iealert/iealert.js"></script>
+		<!--/IE浏览器版本过低提示iealert插件-->
+		
+		<!--表单验证插件,JS-->
+		<script src="../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../Library/js/html5shiv.js"></script>
+		<script src="../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<div class="wrapper">
+			<section class="login-layout">
+				<!--头部-模块-->
+				<header><h1>爱尚抓娃娃后台管理系统</h1></header>
+				<!--/头部-模块-->
+				
+				<!--表单控件-模块-->
+				<form class="T_loginFormIbox">
+					<figure>
+						<img src="Library/images/profile_small.jpg"/>
+					</figure>
+					<div class="T_rows">
+						<hgroup>
+							<span><i class="fa fa-user"></i></span>
+							<input type="text" id="userName" placeholder="用户名" datatype="IsNull" errorMsg="用户名不能为空！" />
+						</hgroup>
+					</div>
+					<div class="T_rows">
+						<hgroup>
+							<span><i class="fa fa-unlock-alt"></i></span>
+							<input type="password" id="userPasd" placeholder="密码" datatype="IsNull" errorMsg="密码不能为空！" />
+						</hgroup>
+					</div>
+					<div class="T_rows">
+						<hgroup>
+							<a class="T_btn T_btnI T_block" id="login_btn">登录</a>
+						</hgroup>
+					</div>
+					<div class="T_rows">
+						<time class="Newdate"></time>
+					</div>
+				</form>
+				<!--/表单控件-模块-->
+			</section>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 如果当前session过期则跳转到父页面
+		 */
+		if(window.top != window) {
+	        parent.window.location.reload();
+	    };
+		
+		/**
+		 * 获取当前年月日时分秒星期-函数
+		 */
+		function showNewdate() {
+			var date = new Date();
+			this.year = date.getFullYear();
+			this.month = date.getMonth() + 1;
+			this.date = date.getDate();
+			this.day = new Array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六')[date.getDay()];
+			this.hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+			this.minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+			this.second = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+			var currentTime = '现在是：'  + this.year + '年' + this.month + '月' + this.date + '日 ' + this.hour + ':' + this.minute + ':' + this.second + ' ' + this.day;
+			
+			$('.Newdate').text(currentTime);
+		};
+		
+		$(document).ready(function() {
+			
+			/**
+			 * 初始化获取当前年月日时分秒星期-函数
+			 */
+			showNewdate();
+			setInterval(function() {
+				showNewdate();
+			}, 1000);
+			
+			/**
+			 * 登录事件
+			 */
+			$('#login_btn').click(function() {
+
+				//表单验证数组
+                var ValidateArray = [
+					$('#userName'),
+					$('#userPasd'),
+					$('#userPasd'),
+					$('#imageCode')
+				]
+
+                //判断表单控件是否通过验证
+				if(!$(ValidateArray).IsValidateAll({bScroll: false})){
+					return;
+				}else{
+                    var data = {
+                        userName:$('#userName').val(),
+                        password:$('#userPasd').val()
+					}
+                    getLogin(data);
+				}
+
+
+			});
+			
+			/**
+			 * 按下回车键登录-事件
+			 */
+		    $(document).keypress(function (e) {
+		        var theEvent = window.event || e;
+		        var keyCode = theEvent.keyCode || theEvent.which;
+		        if(keyCode == 13 || keyCode == 10) {
+
+		            if(theEvent.preventDefault) theEvent.preventDefault();
+		            theEvent.returnValue = false;
+                    var data = {
+                        userName:$('#userName').val(),
+                        password:$('#userPasd').val()
+                    }
+                    getLogin(data)
+		            return false;
+		        }
+		    });
+			
+		});
+
+
+		function getLogin(data) {
+
+            $.ajax({
+                type: "post",
+                url: "http://120.77.83.200:8088/login",
+                data: data,
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        $('#userName').val('');
+                        $('#userPasd').val('');
+                        Tui.Msg({text:rs.desc, icon:'sIcon'});
+                        // 保存用户信息
+						sessionStorage.setItem('result',JSON.stringify(rs.result));
+                        sessionStorage.setItem('token',JSON.stringify(rs.result.token));
+
+                        setTimeout(function() {
+                            location.href = 'Default.html';
+                        }, 1000)
+                    } else {
+                        Tui.Msg({text:rs.desc, icon:'sIcon'});
+                    }
+                    //console.log(rs.message);
+                }
+            });
+
+        }
+	</script>
+</html>

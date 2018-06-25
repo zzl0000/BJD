@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../Library/css/Reset-style.css"/>
+		<!--/重置样式表-->
+		
+		<link rel="stylesheet" href="Library/css/Tui-Common.css"/>
+		
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="Library/css/Tui-PC.css" media="screen and (min-width: 1024px)"/>
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+		
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)"/>
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--滚动条slimScroll插件-->
+		<script src="../Plugin/scrollBar/slimscroll.js"></script>
+		<!--/滚动条slimScroll插件-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+		
+		<!--表单验证插件,JS-->
+		<script src="../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+	    
+		<!--公共模块,JS库-->
+		<script src="Library/js/common.js"></script>
+		<!--/公共模块,JS库-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../Library/js/html5shiv.js"></script>
+		<script src="../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<div class="wrapper overflow-yH">
+			<!--头部-模块-->
+			<header class="T_header" id="T_header">
+				<!--LOGO-->
+				<div class="T_logoIcon">爱尚抓娃娃后台管理</div>
+				<!--/LOGO-->
+				
+				<!--T_navbarMin-->
+				<div class="T_navbarMin">
+					<a><i class="fa fa-navicon"></i></a>
+				</div>
+				
+				<div class="T_collapseMenu">
+					<a><i class="fa fa-dedent"></i></a>
+				</div>
+				<!--/T_navbarMin-->
+				
+				<!--T_settingMin-->
+				<div class="T_settingMin">
+					<a><i class="fa fa-gear"></i></a>
+				</div>
+				<!--/T_settingMin-->
+				
+				<!--T_topDown-->
+				<div class="T_navMenu">
+					<hgroup class="T_topDown dropDown_menu T_userHead">
+						<cite>
+							<img src="Library/images/profile_small.jpg"/>
+							<span class="userName">管理员</span>
+						</cite>
+						<ul>
+							<i class="arrow_top"></i>
+							<li id="updatePwsd"><i class="fa fa-unlock-alt"></i> 修改密码</a></li>
+							<li id="signOut" class="divline"><i class="fa fa-sign-out"></i> 退出</li>
+						</ul>
+					</hgroup>
+					<hgroup class="T_topDown T_fullScreen" id="T_fullScreen">
+						<a data-tag="fullscreen" title="全屏"><i class="fa fa-compress"></i></a>
+					</hgroup>
+				</div>
+				<!--/T_topDown-->
+			</header>
+			<!--/头部-模块-->
+			
+			<!--左侧导航栏-模块-->
+			<aside class="T_sideBar">
+				<section>
+					<h1>导航菜单 / <em>Navigation</em></h1>
+					<!--menu-list-->
+					<div class="T_menuList">
+						<h3 class="curColor">
+							<i class="fa fa-home"></i>
+							<a class="T_menuItem" data-href="View/home.html">首页</a>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-shopping-bag"></i>
+							<a>商城管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/bjd-Type.html">娃娃分类</a>
+								<a class="T_menuItem" data-href="View/bjd-Mange.html">娃娃管理</a>
+								<a class="T_menuItem" data-href="View/integralShop-Mange.html">积分商品管理</a>
+								<a class="T_menuItem" data-href="View/favorite-Mange.html">收藏管理</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-shopping-bag"></i>
+							<a>娃娃机管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/bjd-mach-Type.html">娃娃机分类</a>
+								<a class="T_menuItem" data-href="View/bjd-mach-Mange.html">娃娃机管理</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-tasks"></i>
+							<a>订单管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/integralOrder-Mange.html">积分订单列表</a>
+								<a class="T_menuItem" data-href="View/order-Mange.html">发货订单列表</a>
+								<!--<a class="T_menuItem" data-href="View/order-SettingNumber.html">设置</a>-->
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-tasks"></i>
+							<a>套餐管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/combo-List.html">套餐列表</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-envelope"></i>
+							<a>营销管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/salesFrons-Mange.html">销售额数据分析</a>
+								<a class="T_menuItem" data-href="View/deviceSales-Mange.html">设备营销</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-film"></i>
+							<a>影院管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/video-Mange.html">视频管理</a>
+								<a class="T_menuItem" data-href="View/gift-Mange.html">礼包管理</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-users"></i>
+							<a>用户中心管理</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/feedback-Mange.html">意见反馈</a>
+								<a class="T_menuItem" data-href="View/users-Mange.html">用户管理</a>
+								<a class="T_menuItem" data-href="View/expensesRecord-Mange.html">费用记录管理</a>
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-sitemap"></i>
+							<a>系统管理</a>
+							<hgroup class="T_subnav">
+								<!--<a class="T_menuItem" data-href="View/account-Mange.html">账户管理</a>-->
+								<a class="T_menuItem" data-href="View/role-Mange.html">角色管理</a>
+								<a class="T_menuItem" data-href="View/menu-Mange.html">菜单管理</a>
+								<a class="T_menuItem" data-href="View/permission-Mange.html">权限管理</a>
+								<!--<a class="T_menuItem" data-href="View/admin-Mange.html">管理员管理</a>-->
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-cogs"></i>
+							<a>基础设置</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem" data-href="View/initSetting-Mange.html">初始化设置</a>
+								<a class="T_menuItem" data-href="View/message-Mange.html">消息管理</a>
+								<a class="T_menuItem" data-href="View/appSwipeImage-Mange.html">banner管理</a>
+								<a class="T_menuItem" data-href="View/appStarImage-Mange.html">启动页管理</a>
+								<!--<a class="T_menuItem" data-href="View/appLaunchImage-Mange.html">引导页管理</a>-->
+							</hgroup>
+						</h3>
+						<h3 class="right-icon">
+							<i class="fa fa-cog"></i>
+							<a>其它设置</a>
+							<hgroup class="T_subnav">
+								<a class="T_menuItem"  data-href="View/transferBalanceVo-Mange.html">过户功能</a>
+								<!--<a class="T_menuItem">分享功能</a>-->
+							</hgroup>
+						</h3>
+					</div>
+					<!--/menu-list-->
+				</section>
+			</aside>
+			<!--/左侧导航栏-模块-->
+			
+			<!--右侧主体-模块-->
+			<section class="T_container">
+				<!--IframeTab-->
+				<div class="T_headTabs">
+					<button class="T_tabLeft"><i class="fa fa-backward"></i></button>
+					<nav class="T_menuTabs">
+						<div class="T_pageTabs slipAnimate">
+							<a class="T_menuItemTab curActive" data-href="View/home.html">首页</a>
+						</div>
+					</nav>
+					<button class="T_tabRight"><i class="fa fa-forward"></i></button>
+					<hgroup class="T_topDown dropDown_menu T_tabsDown">
+						<cite>关闭操作 <i class="fa fa-caret-down"></i></cite>
+						<ul>
+							<li class="T_closeAllTabs">关闭全部选项卡</li>
+						</ul>
+					</hgroup>
+				</div>
+				<!--/IframeTab-->
+				
+				<!--iframeContent-->
+				<div class="T_iframeContent">
+					<iframe class="T_iframePage" src="View/home.html" width="100%" height="100%" name="iframeName" frameborder="0"></iframe>
+				</div>
+				<!--/iframeContent-->
+				
+				<!--T_footer-->
+				<footer class="T_footer">
+					<p>爱尚抓娃娃后台管理系统</p>
+				</footer>
+				<!--/T_footer-->
+			</section>
+			<!--/右侧主体-模块-->
+		</div>
+		
+		<!--Web弹层组件-(页面层)-->
+		<section class="T_modalWrap" id="updateModal" >
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>旧密码：</label>
+								<input type="password" id="oldPwd" placeholder="输入旧密码" datatype="IsNull" errorMsg="旧密码不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>新密码：</label>
+								<input type="password" id="newsPwd" placeholder="输入新密码" datatype="IsNull" errorMsg="新密码不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>确认密码：</label>
+								<input type="password" id="confirmPwd" placeholder="输入确认密码" datatype="IsNull" errorMsg="确认密码不能为空！" />
+							</hgroup>
+						</div>
+					</form>
+				</div>
+				<footer class="T_modalFooter">
+					<button class="T_confirmBtn">确认</button>
+					<button class="T_cancelBtn">关闭</button>
+				</footer>
+			</div>
+		</section>
+		<!--/Web弹层组件-(页面层)-->
+		
+		<script type="text/javascript">
+			
+			/**
+			 * 修改密码-函数
+			 */
+			function UpdatePawsd() {
+				//表单验证数组
+            	var ValidateArray = [
+					$('#oldPwd'),
+					$('#newsPwd'),
+					$('#confirmPwd')
+				]
+		    	
+		    	//判断表单控件是否通过验证
+				if(!$(ValidateArray).IsValidateAll()) return;
+				
+				Tui.closeAll($('#updateModal'));
+				Tui.Msg({text:'密码修改成功,请重新登录！', icon:'sIcon'});
+
+			}
+			
+			$(document).ready(function(){
+
+                // 获取用户信息
+				var useInfo = JSON.parse(sessionStorage.getItem('result'));
+                // console.log(useInfo);
+
+               $('.userName').text(useInfo.userName);
+
+
+				/**
+				 * 修改密码-事件
+				 */
+				$('#updatePwsd').click(function() {
+					Tui.Page({
+						type: 0,
+						title: '修改密码',
+	            		area: ['auto', 'auto'],
+	            		content: $('#updateModal'),
+	            		success: function(btnIndex) {
+	            			if (btnIndex == 0) {
+	            				UpdatePawsd(); //调用修改密码UpdatePawsd()函数
+	            			}
+	            		}
+					});
+				})
+
+                /**
+				 *  退出登录
+                 */
+
+                $('#signOut').click(function(){
+                    setTimeout(function() {
+                        location.href = 'login.html';
+                    }, 500)
+				})
+
+				
+			});
+		</script>
+	</body>
+</html>

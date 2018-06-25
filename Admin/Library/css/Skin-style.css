@@ -1,0 +1,94 @@
+/*  Home页-模块
+ *	author:			Tony
+ *	date:			2017-11-20
+*/
+.T_homeBg {
+	padding: 0;
+	border-top: transparent;
+	background-color: transparent;
+}
+
+.T_homeBg .T_iboxContent {
+	padding: 0;
+}
+
+.T_homeRows {
+	width: 100%;
+    position: relative;
+    zoom: 1;
+}
+
+.T_homeRows:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.T_homeRows hgroup.T_cardIbox:last-child {
+	padding-right: 0;
+}
+
+.T_homeRows hgroup.T_cardIbox {
+	width: 33.33333333333333%;
+	padding-right: 20px;
+	float: left;
+}
+
+.T_homeRows hgroup.T_cardIbox:last-child {
+	margin-bottom: 0;
+}
+
+.T_homeRows hgroup.T_cardIbox div {
+	width: auto;
+    height: 167.5px;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    -moz-box-shadow: 0px 0px 5px #E7EAEC;
+    -webkit-box-shadow: 0px 0px 5px #E7EAEC;
+    box-shadow: 0px 0px 5px #E7EAEC;
+}
+
+.T_homeRows hgroup.T_cardIbox div figure {
+	width: 100px;
+    line-height: 167.5px;
+    color: #FFFFFF;
+    font-size: 40px;
+    text-align: center;
+    float: left;
+}
+
+.T_homeRows hgroup.T_cardIbox div article {
+    margin-left: 100px;
+}
+
+.T_homeRows hgroup.T_cardIbox div article header {
+	padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
+.T_homeRows hgroup.T_cardIbox div article header h1 {
+	font-size: 36px;
+}
+
+.T_homeRows hgroup.T_cardIbox div article footer {
+	font-size: 18px;
+    position: relative;
+    border-top: 1px solid rgba(160,160,160,0.2);
+    padding: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media screen and (max-width:1024px) {
+	.T_homeRows hgroup.T_cardIbox {
+		width: 100%;
+		padding-right: 0px;
+		margin-bottom: 20px;
+		float: none;
+	}
+}
+

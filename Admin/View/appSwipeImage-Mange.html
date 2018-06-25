@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+
+
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="appSwipeImage-Mange.html"><i class="fa fa-home"></i> banner管理</a>
+					</li>
+				</ul>
+				
+				<hgroup class="T_toolBtnGroup">
+					<a class="T_btn T_btnI T_menuItem" data-href="View/add_appSwipeImage.html" data-title="添加轮播图"><i class="fa fa-plus"></i> 添加轮播图</a>
+				</hgroup>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool">
+							<div class="T_rows">
+								<hgroup class="T_inputText">
+									<label>轮播名称：</label>
+									<input id="banner_title" type="search" placeholder="输入轮播名称查询" />
+								</hgroup>
+								<hgroup class="T_select">
+										<label>类型：</label>
+										<div class="select-control">
+											<cite data-value="1" id="bannerType">首页轮播</cite>
+											<i  class="selectDown"></i>
+											<ul>
+												<li data-value="1">首页轮播</li>
+												<li data-value="2">积分商城轮播</li>
+												<li data-value="3">影院轮播</li>
+											</ul>
+										</div>
+								</hgroup>
+								<hgroup class="T_BtnGroup" id="search">
+									<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+								</hgroup>
+
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">序号</th>
+										<th class="col-md-1">操作员</th>
+										<th class="col-md-1">图片地址</th>
+										<th class="col-md-1">图片名称</th>
+										<th class="col-md-1">banner类型</th>
+										<th class="col-md-1">创建时间</th>
+										<th class="col-md-2">操作</th>
+									</tr>
+								</thead>
+								<tbody id="evaluationtmpl">
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+									{{ for(var i in it) { }}
+									<tr>
+										<td>{{= i }}</td>
+										<td>管理员</td>
+										<td><img style="width: 80px; height: 80px;" src="http://{{= it[i].realUrlPath }}"/></td>
+										<td>{{= it[i].bannerTitle || '' }}</td>
+										{{? it[i].bannerType == 1 }}
+											<td>首页轮播</td>
+										{{?? it[i].bannerType == 2}}
+											<td>积分商城轮播</td>
+										{{??}}
+											<td>影院轮播</td>
+										{{?}}
+										<td>{{= it[i].createTime || '' }}</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP T_menuItem" data-href="View/add_appSwipeImage.html" data-title="修改"  data-id="{{= it[i].id}}"><i class="fa fa-edit"></i> 修改</a>
+											<a class="T_btn T_btnSm T_btnD del_Btn" data-id="{{= it[i].id}}"><i class="fa fa-trash-o"></i> 删除</a>
+										</td>
+									</tr>
+									{{ } }}
+								</script>
+
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<script>
+			$(document).ready(function() {
+
+
+                // 删除
+                $('body').on('click', '.del_Btn', function () {
+                    var ids = $(this).data('id');
+                    $.ajax({
+                        type: "post",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        url: "http://120.77.83.200:8088/back/banner/deleteBanner",
+                        data: {ids: ids},
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                                selectBannerList(bannerType,banner_title)
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                        }
+                    });
+
+                });
+
+                /**
+                 * 获取BANNER分类列表
+                 */
+
+
+                var banner_title,bannerType;
+
+                // 搜索
+
+                $('#search').click(function () {
+                    banner_title = $('#banner_title').val();
+                    bannerType =  $('#bannerType').attr('data-value');
+                    //collectionType = 1;
+                    selectBannerList(bannerType,banner_title);
+                });
+
+                selectBannerList();
+
+
+
+                function selectBannerList(bannerType,banner_title) {
+                    var data = {
+                        bannerType:bannerType|| 1,
+                        bannerTitle:banner_title || '',
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/banner/selectBannerByCondition",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+
+
+                /**
+                 * iframe子页面跳转-事件
+                 */
+                $('body').on('click','.T_menuItem',function() {
+                    //在iframe中调用父页面的子页面跳转-函数
+                    sessionStorage.setItem('ids',$(this).attr('data-id'));
+                    parent.subPageMenuHref($(this));
+                })
+				
+			})
+		</script>
+		
+	</body>
+</html>

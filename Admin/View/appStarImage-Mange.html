@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+		
+		<!--vatUploader图片/文本文件上传插件-->
+		<script src="../../Plugin/upload/plupload.full.min.js"></script>
+		<script src="../../Library/js/vatUploader.js"></script>
+		<!--/vatUploader图片/文本文件上传插件-->
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="appStarImage-Mange.html"><i class="fa fa-home"></i> 启动页管理</a>
+					</li>
+				</ul>
+				
+
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-2">名称</th>
+										<th class="col-md-1">图片</th>
+										<th class="col-md-2">创建时间</th>
+										<th class="col-md-1">操作</th>
+									</tr>
+								</thead>
+
+								<tbody id="evaluationtmpl">
+
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+
+									<tr>
+										<td>{{= it.paramName }}</td>
+										<td><img style="max-width: 100%;" src="{{= it.fileUpload.filePath }}"/></td>
+										<td>{{= it.createTime}}</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP add_StarImageBtn" data-id="{{= it.id }}" ><i class="fa fa-edit"></i> 修改</a>
+										</td>
+									</tr>
+
+
+								</script>
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+						<!--T_pageToolbar-->
+
+						<!--/T_pageToolbar-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<!--Web弹层组件-(添加 || 修改)启动页-->
+		<section class="T_modalWrap" id="add_StarImageModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_uploadGroup">
+								<label>启动页图片：</label>
+								<div class="uploadPic_singlecontrol" id="uploadImageOne" datatype="OneUploadPic" errorMsg="图片不能为空！">
+									<span>
+										<!--<figure>
+											<img src="../Library/images/header-profile-skin-1.png"/>
+											<div><i></i></div>
+										</figure>-->
+									</span>
+								</div>
+							</hgroup>
+						</div>
+
+					</form>
+				</div>
+				<footer class="T_modalFooter">
+					<button class="T_confirmBtn">提交</button>
+				</footer>
+			</div>
+		</section>
+		<!--/Web弹层组件-(添加 || 修改)启动页-->
+		
+		<script>
+			
+
+			
+			$(document).ready(function() {
+                // 获取启动页
+                getBannerList();
+
+                function getBannerList() {
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/globalSystemParam/selectIndexPic",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+                //打开(添加 || 修改)启动页-弹窗层
+                $('body').on('click','.add_StarImageBtn',function() {
+                    var ids = $(this).data('id');
+                    Tui.Page({
+                        type: 0,
+                        title: '添加/修改-启动页',
+                        content: $('#add_StarImageModal'),
+                        success: function(btnIndex) {
+                            var  data ={
+                                id:ids || '',
+                                fileUpload:$('#uploadImageOne').find('img').data('value'),
+                            };
+                            addData(data);
+                        }
+                    });
+                })
+
+                function addData(data){
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/globalSystemParam/updateIndexPic",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                                Tui.closeAll($('#add_StarImageModal'));
+                                getBannerList();
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+				
+			})
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<script src="../../Library/js/vatCore.js"></script>
+
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			.T_table .T_checkbox .checkbox-control label {
+				margin-right: 25px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="admin-Mange.html"><i class="fa fa-home"></i> 管理员管理</a>
+					</li>
+				</ul>
+
+				<hgroup class="T_toolBtnGroup">
+					<a class="T_btn T_btnI add_AdminBtn"><i class="fa fa-plus"></i> 创建账号</a>
+				</hgroup>
+			</nav>
+			<!--/T_crumbsNav-->
+
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-3">账户名称</th>
+										<th class="col-md-2">权限</th>
+										<th class="col-md-1">更新时间</th>
+										<th class="col-md-1">创建时间</th>
+										<th class="col-md-3">操作</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>管理员</td>
+										<td>
+											<label class="T_label T_labelI">编辑文章</label>
+										</td>
+										<td>2018-05-17 12:41</td>
+										<td>2018-05-17 12:41</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP add_AdminBtn"><i class="fa fa-edit"></i> 修改账号/权限</a>
+											<a class="T_btn T_btnSm T_btnI change_PwsdBtn"><i class="fa fa-edit"></i> 修改密码</a>
+			                                <a class="T_btn T_btnSm T_btnD del_Btn"><i class="fa fa-trash-o"></i> 删除</a>
+			                            </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+						<!--T_pageToolbar-->
+
+						<!--/T_pageToolbar-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+
+		<!--Web弹层组件-(添加 || 修改)账号-->
+		<section class="T_modalWrap" id="add_AdminModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody">
+					<form class="T_formIbox">
+						<div class="T_rows">
+							<hgroup class="T_inputText">
+								<label>账号名称：</label>
+								<input type="text" placeholder="输入名称" datatype="IsNull" errorMsg="名称不能为空！" />
+							</hgroup>
+						</div>
+						<div class="clearfix"></div>
+						<!--<div class="T_rows">-->
+							<!--<hgroup class="T_inputText">-->
+								<!--<label>账号密码：</label>-->
+								<!--<input type="password" placeholder="输入密码" datatype="IsNull" errorMsg="密码不能为空！" />-->
+							<!--</hgroup>-->
+						<!--</div>-->
+						<!--<div class="clearfix"></div>-->
+					</form>
+
+
+
+					<div class="T_ibox m_t_md" style="margin-bottom: 0;">
+						<header class="T_iboxTitle" style="padding: 0 0; border-bottom: none;"><h5>权限分配</h5></header>
+						<div class="T_iboxContent" style="padding: 0;">
+							<!--T_tableResponsive-->
+							<div class="T_tableResponsive" style="padding-bottom: 0;">
+								<table class="T_table T_tableBordered T_tableHover">
+									<tbody>
+										<tr>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">权限管理</label>
+													</div>
+												</hgroup>
+											</td>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">查看</label>
+														<label data-value="2">添加</label>
+														<label data-value="3">编辑</label>
+														<label data-value="4">删除</label>
+													</div>
+												</hgroup>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">系统配置</label>
+													</div>
+												</hgroup>
+											</td>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">查看</label>
+														<label data-value="2">添加</label>
+														<label data-value="3">编辑</label>
+														<label data-value="4">删除</label>
+													</div>
+												</hgroup>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">用户管理</label>
+													</div>
+												</hgroup>
+											</td>
+											<td>
+												<hgroup class="T_checkbox">
+													<div class="checkbox-control">
+														<label class="curActive" data-value="1">查看</label>
+														<label data-value="2">添加</label>
+														<label data-value="3">编辑</label>
+														<label data-value="4">删除</label>
+													</div>
+												</hgroup>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--/T_tableResponsive-->
+						</div>
+					</div>
+				</div>
+				<footer class="T_modalFooter">
+					<button class="T_confirmBtn">提交</button>
+				</footer>
+			</div>
+		</section>
+		<!--/Web弹层组件-(添加 || 修改)账号-->
+
+		<script>
+
+			//打开(添加 || 修改)账号-弹窗层
+			$('.add_AdminBtn').click(function() {
+				Tui.Page({
+					type: 0,
+					title: '添加/修改-账号',
+            		content: $('#add_AdminModal'),
+            		success: function(btnIndex) {
+
+            		}
+				});
+			})
+
+			//修改密码
+			$('.change_PwsdBtn').click(function() {
+				Tui.Prompt({
+					title: '修改密码',
+            		success: function(btnIndex, textVal) {
+            			if (btnIndex == 0) {
+            				Tui.Msg({text:textVal, icon:'sIcon'});
+
+							setTimeout(function() {
+								window.location.reload();
+							}, 1000)
+            			}
+            		}
+				})
+			})
+
+			$(document).ready(function() {
+
+
+			})
+		</script>
+
+	</body>
+</html>

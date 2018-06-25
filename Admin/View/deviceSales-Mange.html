@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="deviceSales-Mange.html"><i class="fa fa-home"></i> 设备营销</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="T_ibox">
+					<div class="T_iboxContent">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool">
+							<div class="T_rows">
+								<hgroup class="T_inputSearch">
+									<label>机台：</label>
+									<input type="search" id="" placeholder="输入机台编号查询" style="width: 200px;" />
+								</hgroup>
+								
+								<hgroup class="T_inputSearch">
+									<label>礼品：</label>
+									<input type="search" placeholder="输入礼品名称" style="width: 200px;" />
+								</hgroup>
+								
+								<hgroup class="T_calendar T_calendarTo">
+									<label>时间：</label>
+									<div>
+										<input type="text" class="calendarInput" value="2017-11-9" placeholder="时间" />
+										<i class="fa fa-remove clearIcon"></i>
+										<span><i class="fa fa-calendar"></i></span>
+									</div>
+									<cite>-</cite>
+									<div>
+										<input type="text" class="calendarInput" value="2017-11-9" placeholder="时间" />
+										<i class="fa fa-remove clearIcon"></i>
+										<span><i class="fa fa-calendar"></i></span>
+									</div>
+								</hgroup>
+								
+								<hgroup class="T_BtnGroup">
+									<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+								</hgroup>
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<!--T_tableResponsive-->
+						<div class="T_tableResponsive">
+							<table class="T_table T_tableBordered T_tableHover">
+								<thead>
+									<tr>
+										<th class="col-md-1">序号</th>
+										<th class="col-md-1">礼品名称</th>
+										<th class="col-md-1">机台编号</th>
+										<th class="col-md-1">礼品出货数</th>
+										<th class="col-md-1">抓娃娃次数</th>
+										<th class="col-md-2">单台营收</th>
+										<th class="col-md-2">时间</th>
+										<th class="col-md-1">操作</th>
+									</tr>
+								</thead>
+
+								<tbody id="evaluationtmpl">
+
+								</tbody>
+								<script id="arraystmpl" type="text/x-dot-template">
+									{{ for(var i in it.list) { }}
+
+									<tr>
+
+										<td>{{= i }}</td>
+										<td>{{= it.list[i].commodityName }}</td>
+										<td>{{= it.list[i].machineNumber }}</td>
+										<td>{{= it.list[i].shipmentNumber || '0' }} 个</td>
+										<td>{{= it.list[i].numberDolls }} 次</td>
+										<td>{{= it.list[i].deskRevenue }} 元</td>
+										<td>{{= it.list[i].time }}</td>
+										<td>
+											<a class="T_btn T_btnSm T_btnP details_Btn"><i class="fa fa-edit"></i> 详情</a>
+										</td>
+
+									</tr>
+									{{ } }}
+
+								</script>
+							</table>
+						</div>
+						<!--/T_tableResponsive-->
+						<!--T_pageToolbar-->
+
+						<div id="pagination3" class="page fl"></div>
+						<!--/T_pageToolbar-->
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<!--Web弹层组件-(机台每天营收列表)-->
+		<section class="T_modalWrap" id="device_DetailsModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody" style="padding: 0;">
+					<!--T_tableResponsive-->
+					<div class="T_tableResponsive" style="height: auto;max-height: 500px;overflow-y: auto;padding-bottom: 0;">
+						<!--T_formSearchTool-->
+						<form class="T_formSearchTool" style="padding: 15px;">
+							<div class="T_rows">
+								<hgroup class="T_calendar T_calendarTo">
+									<label>时间：</label>
+									<div>
+										<input type="text" class="calendarInput" value="2017-11" placeholder="时间" />
+										<i class="fa fa-remove clearIcon"></i>
+										<span><i class="fa fa-calendar"></i></span>
+									</div>
+									<cite>-</cite>
+									<div>
+										<input type="text" class="calendarInput" value="2017-11" placeholder="时间" />
+										<i class="fa fa-remove clearIcon"></i>
+										<span><i class="fa fa-calendar"></i></span>
+									</div>
+								</hgroup>
+								
+								<hgroup class="T_BtnGroup">
+									<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+								</hgroup>
+							</div>
+						</form>
+						<!--/T_formSearchTool-->
+						
+						<table class="T_table T_tableBordered T_tableHover">
+							<thead>
+								<tr>
+									<th class="col-md-3">礼品名称</th>
+									<th class="col-md-3">每天抓娃娃次数</th>
+									<th class="col-md-3">每天营收</th>
+									<th class="col-md-3">时间</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="td-title-bg">泰迪熊</td>
+									<td>20 次</td>
+									<td>1000 元</td>
+									<td>2018-05-17 12:41</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<!--T_pageToolbar-->
+						<div id="pagination4" class="page fl"></div>
+						<!--/T_pageToolbar-->
+					</div>
+					<!--/T_tableResponsive-->
+				</div>
+			</div>
+		</section>
+		<!--/Web弹层组件-(机台每天营收列表)-->
+		
+		<script>
+			
+
+			
+			$(document).ready(function() {
+                var _num = 0, _machineNumber, _startTime, _endTime, _commodityName;
+
+                getDeviceList(_num, _machineNumber, _startTime, _endTime, _commodityName);
+
+                function getDeviceList(_num, _machineNumber, _startTime, _endTime, _commodityName) {
+                    var data = {
+                        num: _num,
+                        size: '10',
+                        startTime: _startTime || '',
+                        endTime: _endTime || '',
+                        machineNumber: _machineNumber || '',
+                        commodityName: _commodityName || ''
+                    };
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/marketingManagement/selectEquipmentMarketingDataList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                console.log(rs)
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+
+                            getDeviceList(current, _machineNumber, _startTime, _endTime, _commodityName);
+                        }
+                    });
+                }
+
+
+
+                //打开(机台每天营收列表)-弹窗层
+                $('body ').off('click').on('click','.details_Btn',function() {
+                    Tui.Page({
+                        type: 0,
+                        title: '详情',
+                        area: ['800px', 'auto'],
+                        content: $('#device_DetailsModal'),
+                        success: function(btnIndex) {
+
+                        }
+                    })
+                })
+
+
+				function getDeviceListDetail() {
+					var _num2 = 0;
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/marketingManagement/selectDailyRevenueByMcId",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {
+                            mcId:''
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                console.log(rs)
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text: rs.desc, icon: 'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+
+            })
+		</script>
+		
+	</body>
+</html>

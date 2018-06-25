@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="edge" />
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>爱尚抓娃娃后台管理系统</title>
+		<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+		<!--重置样式表-->
+		<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+		<!--/重置样式表-->
+
+		<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+		<!--宽度大于1024px的时候加载PC端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+		<!--/宽度大于1024px的时候加载PC端样式表-->
+
+		<!--宽度小于1024px的时候加载移动端样式表-->
+		<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+		<!--/宽度小于1024px的时候加载移动端样式表-->
+		
+		<!--Font Awesome图标字体库(font-awesome.css)-->
+		<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+		<!--/Font Awesome图标字体库(font-awesome.css)-->
+		
+		<!--Jquery前端开发框架,JS库-->
+		<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+		<!--/Jquery前端开发框架,JS库-->
+		
+		<!--前端开发(doT.js)模板引擎-->
+		<script src="../../Library/js/doT.js"></script>
+		<!--/前端开发(doT.js)模板引擎-->
+		
+		<!--自定义TuiComponent组件,插件-->
+		<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+		<!--/自定义TuiComponent组件,插件-->
+
+		<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+		<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+		
+		<script src="../../Library/js/vatCore.js"></script>
+		
+		<!--表单验证插件,JS-->
+		<script src="../../Library/js/ValidateForm.js"></script>
+		<!--/表单验证插件,JS-->
+		
+		<!--HTML5标签兼容JS-->
+
+		<!--[if lt IE 9]>
+		<script src="../../Library/js/html5shiv.js"></script>
+		<script src="../../Library/js/respond.min.js"></script>
+		<![endif]-->
+		
+		<style type="text/css">
+			.td-title-bg {
+				width: 100px;
+				text-align: right;
+				font-weight: bold;
+				background-color: #F5F5F6;
+			}
+			
+			.card-ibox {
+			    height: 100px;
+			}
+			
+			.card-ibox .icon {
+				width: 100px;
+				line-height: 100px;
+			    color: #FFFFFF;
+			    font-size: 40px;
+			    text-align: center;
+			    float: left;
+			}
+			
+			.card-ibox .body {
+			    background-color: #FFFFFF;
+				margin-left: 100px;
+			}
+			
+			.card-ibox .body header {
+				padding: 10px;
+				font-size: 24px;
+			}
+			
+			.card-ibox .body footer {
+				font-size: 14px;
+			    position: relative;
+			    border-top: 1px solid rgba(160,160,160,0.2);
+			    padding: 10px;
+			    white-space: nowrap;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<!--主体内容-模块-->
+		<div class="wrapper">
+			<!--T_crumbsNav-->
+			<nav class="T_crumbsNav">
+				<ul>
+					<li>
+						<a href="users-Mange.html"><i class="fa fa-home"></i> 用户管理</a>
+					</li>
+				</ul>
+			</nav>
+			<!--/T_crumbsNav-->
+				
+			<!--T_layout-->
+			<section class="T_layout">
+				<div class="rows">
+					<div class="col-md-2">
+						<!--T_accordionMenu_ibox-->
+						<div class="T_accordionMenu_ibox">
+							<hgroup class="T_accordionMenu_item">
+								<header data-toggle="accordionMenu" class="T_accordionMenu_title curActive" data-index="1" style="background-image: none;">用户列表</header>
+							</hgroup>
+							<hgroup class="T_accordionMenu_item">
+								<header data-toggle="accordionMenu" class="T_accordionMenu_title" data-index="2" style="background-image: none;">下载量列表</header>
+							</hgroup>
+						</div>
+						<!--/T_accordionMenu_ibox-->
+					</div>
+					<div class="col-md-10">
+						<div class="T_ibox" id="tab_1">
+							<!--用户列表-模块-->
+							<div class="T_iboxContent">
+								<!--T_formSearchTool-->
+								<form class="T_formSearchTool">
+									<div class="T_rows">
+										<hgroup class="T_inputSearch">
+											<label>用户昵称：</label>
+											<input type="search" id="keyword" placeholder="输入用户昵称查询" />
+											<span id="search"><i class="fa fa-search" ></i> 搜索</span>
+										</hgroup>
+									</div>
+								</form>
+								<!--/T_formSearchTool-->
+								
+								<!--T_tableResponsive-->
+								<div class="T_tableResponsive">
+									<table class="T_table T_tableBordered T_tableHover">
+										<thead>
+											<tr>
+												<th class="col-md-1">序号</th>
+												<th class="col-md-1">头像</th>
+												<th class="col-md-1">昵称</th>
+												<th class="col-md-2">邀请码</th>
+												<th class="col-md-3">操作</th>
+											</tr>
+										</thead>
+
+										<tbody id="evaluationtmpl"></table>
+										<script id="arraystmpl" type="text/x-dot-template">
+											{{ for(var i in it.list) { }}
+											<tr>
+												<td>{{= i }}  </td>
+												<td><img style="width: 80px; height: 80px;" src="http://{{= it.list[i].headPicId }}"/></td>
+												<td>{{= it.list[i].nickName }}</td>
+												<td>{{= it.list[i].invitationCode }}</td>
+												<td>
+													<!--<a class="T_btn T_btnSm T_btnP deduct_Btn" data-id="{{= it.list[i].id }}"><i class="fa fa-edit"></i> 扣除积分</a>-->
+													<a class="T_btn T_btnSm T_btnI see_DetailsBtn" data-id="{{= it.list[i].id }}"><i class="fa fa-edit"></i> 查看详情</a>
+													<!--<a class="T_btn T_btnSm T_btnD" data-id="{{= it.list[i].id }}"><i class="fa fa-trash"></i> 删除</a>-->
+												</td>
+											</tr>
+											{{ } }}
+
+										</script>
+									</table>
+
+								</div>
+								<!--T_pageToolbar-->
+								<div id="pagination3" class="page fl"></div>
+								<!--/T_pageToolbar-->
+								<!--/T_tableResponsive-->
+							</div>
+							<!--/用户列表-模块-->
+						</div>
+						
+						<div class="rows T_hide" id="download_count">
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgP"><i class="fa fa-android"></i></div>
+								<div class="body">
+									<header>1000</header>
+									<footer>安卓下载次数</footer>
+								</div>
+							</div>
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgS"><i class="fa fa-apple"></i></div>
+								<div class="body">
+									<header>5000</header>
+									<footer>苹果下载次数</footer>
+								</div>
+							</div>
+							
+							<div class="col-md-4 card-ibox">
+								<div class="icon T_bgP"><i class="fa fa-users"></i></div>
+								<div class="body">
+									<header>5000</header>
+									<footer>登录过用户</footer>
+								</div>
+							</div>
+						</div>
+						
+						<div class="T_ibox T_hide m_t_md" id="tab_2">
+							<header class="T_iboxTitle"><h5>新增用户</h5></header>	
+						
+							<!--下载量列表-模块-->
+							<div class="T_iboxContent">
+								<!--T_formSearchTool-->
+								<form class="T_formSearchTool">
+									<div class="T_rows">
+										<hgroup class="T_calendar T_calendarTo">
+											<label>时间：</label>
+											<div>
+												<input type="text" class="calendarInput" value="2017-11-9" placeholder="时间" />
+												<i class="fa fa-remove clearIcon"></i>
+												<span><i class="fa fa-calendar"></i></span>
+											</div>
+											<cite>-</cite>
+											<div>
+												<input type="text" class="calendarInput" value="2017-11-9" placeholder="时间" />
+												<i class="fa fa-remove clearIcon"></i>
+												<span><i class="fa fa-calendar"></i></span>
+											</div>
+										</hgroup>
+										
+										<hgroup class="T_BtnGroup">
+											<a class="T_btn T_btnI"><i class="fa fa-search"></i> 搜索</a>
+										</hgroup>
+									</div>
+								</form>
+								<!--/T_formSearchTool-->
+								
+								<!--T_tableResponsive-->
+								<div class="T_tableResponsive">
+									<table class="T_table T_tableBordered T_tableHover">
+										<thead>
+											<tr>
+												<th class="col-md-1">序号</th>
+												<th class="col-md-1">头像</th>
+												<th class="col-md-4">昵称</th>
+												<th class="col-md-4">邀请码</th>
+												<th class="col-md-2">创建时间</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>1</td>
+												<td><img style="width: 80px; height: 80px;" src="../Library/images/profile_small.jpg"/></td>
+												<td>飞天蝎</td>
+												<td>64654656</td>
+												<td>2018-05-17 12:41</td>  
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<!--/T_tableResponsive-->
+							</div>
+							<!--/下载量列表-模块-->
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--/T_layout-->
+		</div>
+		<!--/主体内容-模块-->
+		
+		<!--Web弹层组件-(用户列表)-->
+		<section class="T_modalWrap" id="users_DetailsModal">
+			<div class="T_modalIbox">
+				<div class="T_modalBody" style="padding: 0;">
+					<!--T_tableResponsive-->
+					<div class="T_tableResponsive" style="max-height: 500px;overflow-y: auto;padding-bottom: 0;">
+
+						<table class="T_table T_tableBordered T_tableHover">
+
+							<tbody id="userDetailtmpl"></table>
+							<script id="userDetail" type="text/x-dot-template">
+								<tr>
+									<td class="td-title-bg">昵称</td>
+									<td>{{= it.nickName}}</td>
+								</tr>
+								<tr>
+									<td class="td-title-bg">头像</td>
+									<td><img style="width: 80px; height: 80px;" src="http://{{= it.userPicDisPlay}}"/></td>
+								</tr>
+								<tr>
+									<td class="td-title-bg">邀请码</td>
+									<td>{{= it.invitationCode}}</td>
+								</tr>
+								<tr>
+									<td class="td-title-bg">余币</td>
+									<td>{{= it.jbalance}} 个</td>
+								</tr>
+								<tr>
+									<td class="td-title-bg">余积分</td>
+									<td>{{= it.gbalance}}</td>
+								</tr>
+								<tr>
+									<td class="td-title-bg">未发礼品</td>
+									<td>{{= it.num}} 个</td>
+								</tr>
+
+							</script>
+						</table>
+					</div>
+					<!--/T_tableResponsive-->
+				</div>
+			</div>
+		</section>
+		<!--/Web弹层组件-(用户列表)-->
+		
+		<script >
+			
+
+
+
+			
+			
+
+			
+			//打开(用户列表-扣除积分)-弹窗层
+			$('body').on('click','.deduct_Btn',function() {
+				Tui.Prompt({
+					title: '扣除',
+            		success: function(btnIndex, textVal) {
+            			if (btnIndex == 0) {
+            				Tui.Msg({text:textVal, icon:'sIcon'});
+
+							setTimeout(function() {
+								window.location.reload();
+							}, 1000)
+            			}
+            		}
+				})
+			})
+			
+			$(document).ready(function() {
+				
+				/**
+				 * 左侧导航菜单-事件
+				 */
+				$('[data-toggle=accordionMenu]').click(function() {
+					var index = $(this).attr('data-index')
+					
+					$('[data-toggle=accordionMenu]').removeClass('curActive')
+					
+					$(this).addClass('curActive')
+					
+					if (index == '1') { //1.用户列表
+						$('#tab_2').addClass('T_hide')
+						$('#tab_1').removeClass('T_hide')
+						
+						$('#download_count').addClass('T_hide')
+					} else if (index == '2') { //2.下载量列表
+						$('#tab_1').addClass('T_hide')
+						$('#tab_2').removeClass('T_hide')
+						
+						$('#download_count').removeClass('T_hide')
+					}
+				})
+
+
+                /**
+				 *  获取用户数据列表
+                 */
+
+                var _num = 0,keyword;
+
+				// 搜索
+                $('#search').click(function () {
+                    keyword = $('#keyword').val();
+                    getUserList(_num,keyword);
+                })
+
+                getUserList(_num,keyword);
+                //  获取 订单列表列表
+
+                function getUserList(_num,keyword) {
+                    var data ={
+                        num :_num,
+                        size :'5',
+                        nickName: keyword || "",
+                    };
+                    $.ajax({
+                        type: "post",
+                        url: "http://120.77.83.200:8088/back/userBasic/selectUserBasicList",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: data,
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                paginael(rs.result);
+                                var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                                $('#evaluationtmpl').html(arrText);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                }
+                function paginael(rs) {
+
+                    $("#pagination3").pagination({
+                        currentPage: rs.pageNum,
+                        totalPage: rs.pages,
+                        isShow: true,
+                        count: 10,
+                        homePageText: "首页",
+                        endPageText: "尾页",
+                        prevPageText: "上一页",
+                        nextPageText: "下一页",
+                        callback: function(current) {
+
+                            getUserList(current,keyword);
+                        }
+                    });
+                }
+
+
+                //打开(用户列表)-弹窗层
+                $('body').on('click','.see_DetailsBtn', function(e) {
+                    e.preventDefault();
+                    var id = $(this).data('id');
+                    $.ajax({
+                        type: "get",
+                        url: "http://120.77.83.200:8088/back/userBasic/selectuserBasicByUserIdOnBack",
+                        headers: {
+                            'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                        },
+                        data: {
+                            id:id
+                        },
+                        success: function (rs) {
+                            if (rs.desc == "成功") {
+                                console.log(rs);
+                                 var userDetails = doT.template($("#userDetail").text())(rs.result);
+                                 $('#userDetailtmpl').html(userDetails);
+                            } else {
+                                Tui.Msg({text:rs.desc, icon:'sIcon'});
+                            }
+                            //console.log(rs.message);
+                        }
+                    });
+                    Tui.Page({
+                        type: 0,
+                        title: '详情',
+                        area: ['800px', '400px'],
+                        content: $('#users_DetailsModal')
+                    })
+                });
+
+
+
+				
+			})
+		</script>
+		
+	</body>
+</html>

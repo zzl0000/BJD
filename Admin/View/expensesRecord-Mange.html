@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="edge" />
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>爱尚抓娃娃后台管理系统</title>
+	<link rel="stylesheet" href="../../Plugin/TuiComponent/TuiComponent.css"/>
+	<!--重置样式表-->
+	<link rel="stylesheet" href="../../Library/css/Reset-style.css" />
+	<!--/重置样式表-->
+
+	<link rel="stylesheet" href="../Library/css/Tui-Common.css" />
+
+	<!--宽度大于1024px的时候加载PC端样式表-->
+	<link rel="stylesheet" href="../Library/css/Tui-PC.css" media="screen and (min-width: 1024px)" />
+	<!--/宽度大于1024px的时候加载PC端样式表-->
+
+	<!--宽度小于1024px的时候加载移动端样式表-->
+	<link rel="stylesheet" href="../Library/css/Tui-Mobile.css" media="screen and (max-width: 1024px)" />
+	<!--/宽度小于1024px的时候加载移动端样式表-->
+
+	<!--Font Awesome图标字体库(font-awesome.css)-->
+	<link rel="stylesheet" href="../../Library/css/font-awesome.css"/>
+	<!--/Font Awesome图标字体库(font-awesome.css)-->
+
+	<!--Jquery前端开发框架,JS库-->
+	<script src="../../Library/js/jquery-1.8.3.min.js"></script>
+	<!--/Jquery前端开发框架,JS库-->
+
+	<!--前端开发(doT.js)模板引擎-->
+	<script src="../../Library/js/doT.js"></script>
+	<!--/前端开发(doT.js)模板引擎-->
+
+	<!--自定义TuiComponent组件,插件-->
+	<script src="../../Plugin/TuiComponent/TuiComponent.js"></script>
+	<!--/自定义TuiComponent组件,插件-->
+
+	<link rel="stylesheet" href="../../Plugin/Pagination/jquery.pagination.css">
+	<script src="../../Plugin/Pagination/jquery.pagination.min.js"></script>
+
+	<script src="../../Library/js/vatCore.js"></script>
+
+	<!--表单验证插件,JS-->
+	<script src="../../Library/js/ValidateForm.js"></script>
+	<!--/表单验证插件,JS-->
+
+	<!--HTML5标签兼容JS-->
+
+	<!--[if lt IE 9]>
+	<script src="../../Library/js/html5shiv.js"></script>
+	<script src="../../Library/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+<!--主体内容-模块-->
+<div class="wrapper">
+	<!--T_crumbsNav-->
+	<nav class="T_crumbsNav">
+		<ul>
+			<li>
+				<a href="integralRecord-Mange.html"><i class="fa fa-home"></i> 积分记录管理</a>
+			</li>
+		</ul>
+	</nav>
+	<!--/T_crumbsNav-->
+
+	<!--T_layout-->
+	<section class="T_layout">
+		<div class="T_ibox">
+			<div class="T_iboxContent">
+				<!--T_formSearchTool-->
+				<form class="T_formSearchTool">
+					<div class="T_rows">
+						<hgroup class="T_inputSearch">
+							<label>用户昵称：</label>
+							<input type="search" placeholder="输入用户昵称查询" style="width: 200px;" />
+						</hgroup>
+						<hgroup class="T_select">
+							<label>费用类型：</label>
+							<div class="select-control">
+								<cite data-value="" class="queryType">全部</cite>
+								<i class="selectDown"></i>
+								<ul>
+									<li data-value="">全部</li>
+									<li data-value="1">金币</li>
+									<li data-value="2">积分</li>
+									<li data-value="3">钻石</li>
+								</ul>
+							</div>
+						</hgroup>
+						<hgroup class="T_select">
+							<label>类型：</label>
+							<div class="select-control">
+								<cite data-value="" class="exchangeType">全部</cite>
+								<i class="selectDown"></i>
+								<ul>
+									<li data-value="">全部</li>
+									<li data-value="1">减少</li>
+									<li data-value="2">增加</li>
+								</ul>
+							</div>
+						</hgroup>
+
+						<hgroup class="T_calendar T_calendarTo">
+							<label>时间：</label>
+							<div>
+								<input type="text" class="calendarInput" value="2017-11-9" id="_startTime" placeholder="时间" />
+								<i class="fa fa-remove clearIcon"></i>
+								<span><i class="fa fa-calendar"></i></span>
+							</div>
+							<cite>-</cite>
+							<div>
+								<input type="text" class="calendarInput" value="2017-11-9" id="_endTime" placeholder="时间" />
+								<i class="fa fa-remove clearIcon"></i>
+								<span><i class="fa fa-calendar"></i></span>
+							</div>
+						</hgroup>
+
+						<hgroup class="T_BtnGroup">
+							<a class="T_btn T_btnI" id="search"><i class="fa fa-search"></i> 搜索</a>
+						</hgroup>
+					</div>
+				</form>
+				<!--/T_formSearchTool-->
+
+				<!--T_tableResponsive-->
+				<div class="T_tableResponsive">
+					<table class="T_table T_tableBordered T_tableHover">
+						<thead>
+						<tr>
+							<th class="col-md-1">序号</th>
+							<th class="col-md-1">用户昵称</th>
+							<th class="col-md-1">类型</th>
+							<th class="col-md-2">积分内容</th>
+							<th class="col-md-1">积分值</th>
+							<th class="col-md-2">备注</th>
+							<th class="col-md-2">更新时间</th>
+							<!--<th class="col-md-2">操作</th>-->
+						</tr>
+						</thead>
+						<tbody id="evaluationtmpl"></table>
+						<script id="arraystmpl" type="text/x-dot-template">
+							{{ for(var i in it.list) { }}
+							<tr>
+								<td>{{= i }}  </td>
+								<td>{{= it.list[i].nickName }}</td>
+								{{? it.list[i].exchangeType == 1 }}
+									<td><label class="T_label T_labelW">增加</label></td>
+								{{??}}
+									<td><label class="T_label T_labelW">减少</label></td>
+								{{?}}
+								<td></td>
+								<td>{{= it.list[i].exchangeNum }}</td>
+								<td>{{= it.list[i].exchangeRemark }}</td>
+								<td>{{= it.list[i].createTime }}</td>
+								<!--<td>-->
+									<!--&lt;!&ndash;<a class="T_btn T_btnSm T_btnP deduct_Btn" data-id="{{= it.list[i].id }}"><i class="fa fa-edit"></i> 扣除积分</a>&ndash;&gt;-->
+									<!--&lt;!&ndash;<a class="T_btn T_btnSm T_btnD del_Btn" data-id="{{= it.list[i].id }}"><i class="fa fa-trash-o"></i> 删除</a>&ndash;&gt;-->
+								<!--</td>-->
+							</tr>
+							{{ } }}
+							</script>
+
+					</table>
+				</div>
+				<!--/T_tableResponsive-->
+				<!--T_pageToolbar-->
+				<div id="pagination3" class="page fl"></div>
+				<!--/T_pageToolbar-->
+			</div>
+		</div>
+	</section>
+	<!--/T_layout-->
+</div>
+<!--/主体内容-模块-->
+
+
+<script>
+    //打开(扣除积分)-弹窗层
+    $('.deduct_Btn').click(function() {
+        Tui.Prompt({
+            title: '扣除',
+            success: function(btnIndex, textVal) {
+                if (btnIndex == 0) {
+                    Tui.Msg({text:textVal, icon:'sIcon'});
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000)
+                }
+            }
+        })
+    })
+
+    $(document).ready(function() {
+        /**
+         *  获取积分记录数据列表
+         */
+
+        var _num = 0,keyword,_startTime,_endTime,_exchangeType,_queryType;
+
+        // 搜索
+        $('#search').click(function () {
+            keyword = $('#keyword').val();
+            _startTime = $('#_startTime').val();
+            _endTime = $('#_endTime').val();
+            _exchangeType = $('.exchangeType').attr('data-value');
+            _queryType = $('.queryType').attr('data-value');
+            getUserList(_num,keyword,_startTime,_endTime,_exchangeType,_queryType);
+        });
+
+        getUserList(_num,keyword);
+        //  获取 订单列表列表
+
+        function getUserList(_num,keyword,_startTime,_endTime,_exchangeType,_queryType) {
+            var data ={
+                num :_num,
+                size :'5',
+                nickName: keyword || "",
+                balanceType:'2',
+                exchangeType: _exchangeType || '',
+                queryType: _queryType || 1,
+                startTime:_startTime || '',
+                endTime:_endTime || ''
+            };
+            $.ajax({
+                type: "get",
+                url: "http://120.77.83.200:8088/back/userBasic/selectCurrencyOnUserBasic",
+                headers: {
+                    'access-token':sessionStorage.getItem('token').replace(/^\"|\"$/g,'')
+                },
+                data: data,
+                success: function (rs) {
+                    if (rs.desc == "成功") {
+                        console.log(rs);
+                        paginael(rs.result);
+                        var arrText = doT.template($("#arraystmpl").text())(rs.result);
+                        $('#evaluationtmpl').html(arrText);
+                    } else {
+                        Tui.Msg({text:rs.desc, icon:'sIcon'});
+                    }
+                    //console.log(rs.message);
+                }
+            });
+        }
+        function paginael(rs) {
+
+            $("#pagination3").pagination({
+                currentPage: rs.pageNum,
+                totalPage: rs.pages,
+                isShow: true,
+                count: 10,
+                homePageText: "首页",
+                endPageText: "尾页",
+                prevPageText: "上一页",
+                nextPageText: "下一页",
+                callback: function(current) {
+
+                    getUserList(current,keyword,_startTime,_endTime,_exchangeType,_queryType)
+                }
+            });
+        }
+
+    })
+</script>
+
+</body>
+</html>
